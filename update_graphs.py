@@ -72,3 +72,16 @@ fig = go.Figure(data,layout)
 
 fig.write_html("./docs/historian_new_cases_galicia.html")
 
+layout=go.Layout(title = 'Evolución de casos activos en Galicia')
+data = go.Scatter(x=df["Fecha"],y=df["Total casos"]-df["Total altas"]-df['Total fallecidos'],mode='lines',name="Evolución de casos activos")
+
+fig = go.Figure(data,layout)
+
+fig.write_html("./docs/historian_active_cases_galicia.html")
+
+layout=go.Layout(title = 'Evolución de la tasa de letalidad en Galicia (%)')
+data = go.Scatter(x=df["Fecha"],y=df["Tasa de letalidad"],mode='lines',name="Evolución de la tasa de letalidad")
+
+fig = go.Figure(data,layout)
+
+fig.write_html("./docs/letality_rate_evolution.html")
