@@ -85,3 +85,33 @@ data = go.Scatter(x=df["Fecha"],y=df["Tasa de letalidad"],mode='lines',name="Evo
 fig = go.Figure(data,layout)
 
 fig.write_html("./docs/letality_rate_evolution.html")
+
+last_values = [df["Total Casos Vigo"].tail(1).values[0]-df["Total Casos Vigo"].tail(2).values[0],
+               df["Total Casos Santiago"].tail(1).values[0]-df["Total Casos Santiago"].tail(2).values[0],
+               df["Total Casos Pontevedra"].tail(1).values[0]-df["Total Casos Pontevedra"].tail(2).values[0],
+               df["Total Casos Ourense"].tail(1).values[0]-df["Total Casos Ourense"].tail(2).values[0],
+               df["Total Casos Lugo"].tail(1).values[0]-df["Total Casos Lugo"].tail(2).values[0],
+               df["Total Casos Ferrol"].tail(1).values[0]-df["Total Casos Ferrol"].tail(2).values[0],
+               df["Total Casos A Coruna"].tail(1).values[0]-df["Total Casos A Coruna"].tail(2).values[0]]
+
+last_cured_values = [df["Total Altas Vigo"].tail(1).values[0]-df["Total Altas Vigo"].tail(2).values[0],
+               df["Total Altas Santiago"].tail(1).values[0]-df["Total Altas Santiago"].tail(2).values[0],
+               df["Total Altas Pontevedra"].tail(1).values[0]-df["Total Altas Pontevedra"].tail(2).values[0],
+               df["Total Altas Ourense"].tail(1).values[0]-df["Total Altas Ourense"].tail(2).values[0],
+               df["Total Altas Lugo"].tail(1).values[0]-df["Total Altas Lugo"].tail(2).values[0],
+               df["Total Altas Ferrol"].tail(1).values[0]-df["Total Altas Ferrol"].tail(2).values[0],
+               df["Total Altas A Coruna"].tail(1).values[0]-df["Total Altas A Coruna"].tail(2).values[0]]
+
+fig = go.Figure()
+
+fig.add_trace(go.Bar(x=last_values, y=["Vigo","Santiago","Pontevedra","Ourense","Lugo","Ferrol","A Coruña"], orientation='h', 
+                     name='Nuevos casos',text=last_values, textposition='inside',marker_color='indianred'))
+
+fig.add_trace(go.Bar(x=last_cured_values, y=["Vigo","Santiago","Pontevedra","Ourense","Lugo","Ferrol","A Coruña"], orientation='h',
+                    name='Altas',text=last_cured_values, textposition='inside',marker_color='forestgreen'))
+
+fig.update_layout( title="Nuevos casos y altas por área sanitaria",
+    xaxis_title="",
+    yaxis_title="")
+
+fig.write_html("./docs/bars_new_cases_cured.html")
