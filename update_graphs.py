@@ -115,3 +115,14 @@ fig.update_layout( title="Nuevos casos y altas por área sanitaria",
     yaxis_title="")
 
 fig.write_html("./docs/bars_new_cases_cured.html")
+
+fig = go.Figure()
+
+fig.add_trace(go.Scatter(x=df["Fecha"],y=df["Hospitalizados"],mode='lines',name="Hospitalizados",fill='tonexty'))
+fig.add_trace(go.Scatter(x=df["Fecha"],y=df["UCI"],mode='lines',name="UCI",fill='tozeroy'))
+
+fig.update_layout( title="Evolución de la ocupación hospitalaria",
+    xaxis_title="",
+    yaxis_title="")
+
+fig.write_html("./docs/evolution_hospital_occupation.html")
