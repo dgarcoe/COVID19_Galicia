@@ -1,10 +1,16 @@
+## Estadísticas diarias
 
+Estas estadísticas se actualizan con los valores del último día a las 18 PM.
 
 {% include_relative total_cases.html %}
 
-{% include_relative historian_new_cases_galicia.html %}
+{% include_relative  bars_new_cases_cured.html %}
 
-{% include_relative  bars_new_cases_cured.html %} 
+## Estadísticas históricas
+
+Estas estadísticas contienen la evolución histórica de los indicadores.
+
+{% include_relative historian_new_cases_galicia.html %}
 
 {% include_relative  evolution_hospital_occupation.html %}
 
