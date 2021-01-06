@@ -46,15 +46,19 @@ new_total_in_hospital = df_day_galicia['Camas_Ocupadas_HOS'].values[0]
 new_total_intensive_care =  df_day_galicia['Camas_Ocupadas_UCI'].values[0]
 new_in_hospital = new_total_in_hospital-df['Hospitalizados'].tail(1).values[0]
 new_intensive_care = new_total_intensive_care-df['UCI'].tail(1).values[0]
+new_IA_14 = (new_total_cases-df['Total casos'].tail(14).values[0])*100000/df['Poblacion Galicia'].tail(1).values[0]
+new_IA_7 = (new_total_cases-df['Total casos'].tail(7).values[0])*100000/df['Poblacion Galicia'].tail(1).values[0]
 
-#Data from A Coru√±a
-df_day_coruna = df_day[df_day['Area_Sanitaria']=='A.S. A CORU√ëA E CEE']
+#Data from A CoruÒa
+df_day_coruna = df_day[df_day['Area_Sanitaria']=='A.S. A CORU—A E CEE']
 new_total_cases_coruna = df_day_coruna['Casos_Totais'].values[0]
 new_total_recovered_coruna = df_day_coruna['Pacientes_Con_Alta'].values[0]
 new_total_deaths_coruna = df_day_coruna['Exitus'].values[0]
 new_total_in_hospital_coruna = df_day_coruna['Camas_Ocupadas_HOS'].values[0]
 new_total_intensive_care_coruna = df_day_coruna['Camas_Ocupadas_UCI'].values[0]
 new_total_pcr_coruna = df_day_coruna['Probas_Realizadas_PCR'].values[0]
+new_IA_14_coru = (new_total_cases_coruna-df['Total Casos A Coruna'].tail(14).values[0])*100000/df['Poblacion A Coruna'].tail(1).values[0]
+new_IA_7_coru = (new_total_cases_coruna-df['Total Casos A Coruna'].tail(7).values[0])*100000/df['Poblacion A Coruna'].tail(1).values[0]
 
 #Data from Ferrol
 df_day_ferrol = df_day[df_day['Area_Sanitaria']=='A.S. FERROL']
@@ -64,33 +68,42 @@ new_total_deaths_ferrol = df_day_ferrol['Exitus'].values[0]
 new_total_in_hospital_ferrol = df_day_ferrol['Camas_Ocupadas_HOS'].values[0]
 new_total_intensive_care_ferrol = df_day_ferrol['Camas_Ocupadas_UCI'].values[0]
 new_total_pcr_ferrol = df_day_ferrol['Probas_Realizadas_PCR'].values[0]
+new_IA_14_ferrol = (new_total_cases_ferrol-df['Total Casos Ferrol'].tail(14).values[0])*100000/df['Poblacion Ferrol'].tail(1).values[0]
+new_IA_7_ferrol = (new_total_cases_ferrol-df['Total Casos Ferrol'].tail(7).values[0])*100000/df['Poblacion Ferrol'].tail(1).values[0]
+
 
 #Data from Lugo
-df_day_lugo = df_day[df_day['Area_Sanitaria']=='A.S. LUGO, A MARI√ëA E MONFORTE']
+df_day_lugo = df_day[df_day['Area_Sanitaria']=='A.S. LUGO, A MARI—A E MONFORTE']
 new_total_cases_lugo = df_day_lugo['Casos_Totais'].values[0]
 new_total_recovered_lugo = df_day_lugo['Pacientes_Con_Alta'].values[0]
 new_total_deaths_lugo = df_day_lugo['Exitus'].values[0]
 new_total_in_hospital_lugo = df_day_lugo['Camas_Ocupadas_HOS'].values[0]
 new_total_intensive_care_lugo = df_day_lugo['Camas_Ocupadas_UCI'].values[0]
 new_total_pcr_lugo = df_day_lugo['Probas_Realizadas_PCR'].values[0]
+new_IA_14_lugo = (new_total_cases_lugo-df['Total Casos Lugo'].tail(14).values[0])*100000/df['Poblacion Lugo'].tail(1).values[0]
+new_IA_7_lugo = (new_total_cases_lugo-df['Total Casos Lugo'].tail(7).values[0])*100000/df['Poblacion Lugo'].tail(1).values[0]
 
 #Data from Ourense
-df_day_ourense = df_day[df_day['Area_Sanitaria']=='A.S. OURENSE, VER√çN E O BARCO']
+df_day_ourense = df_day[df_day['Area_Sanitaria']=='A.S. OURENSE, VERÕN E O BARCO']
 new_total_cases_ourense = df_day_ourense['Casos_Totais'].values[0]
 new_total_recovered_ourense = df_day_ourense['Pacientes_Con_Alta'].values[0]
 new_total_deaths_ourense = df_day_ourense['Exitus'].values[0]
 new_total_in_hospital_ourense = df_day_ourense['Camas_Ocupadas_HOS'].values[0]
 new_total_intensive_care_ourense = df_day_ourense['Camas_Ocupadas_UCI'].values[0]
 new_total_pcr_ourense = df_day_ourense['Probas_Realizadas_PCR'].values[0]
+new_IA_14_ourense = (new_total_cases_ourense-df['Total Casos Ourense'].tail(14).values[0])*100000/df['Poblacion Ourense'].tail(1).values[0]
+new_IA_7_ourense = (new_total_cases_ourense-df['Total Casos Ourense'].tail(7).values[0])*100000/df['Poblacion Ourense'].tail(1).values[0]
 
 #Data from Pontevedra
-df_day_ponte = df_day[df_day['Area_Sanitaria']=='A.S. PONTEVEDRA E O SALN√âS']
+df_day_ponte = df_day[df_day['Area_Sanitaria']=='A.S. PONTEVEDRA E O SALN…S']
 new_total_cases_ponte = df_day_ponte['Casos_Totais'].values[0]
 new_total_recovered_ponte = df_day_ponte['Pacientes_Con_Alta'].values[0]
 new_total_deaths_ponte = df_day_ponte['Exitus'].values[0]
 new_total_in_hospital_ponte = df_day_ponte['Camas_Ocupadas_HOS'].values[0]
 new_total_intensive_care_ponte = df_day_ponte['Camas_Ocupadas_UCI'].values[0]
 new_total_pcr_ponte = df_day_ponte['Probas_Realizadas_PCR'].values[0]
+new_IA_14_ponte = (new_total_cases_ponte-df['Total Casos Pontevedra'].tail(14).values[0])*100000/df['Poblacion Pontevedra'].tail(1).values[0]
+new_IA_7_ponte = (new_total_cases_ponte-df['Total Casos Pontevedra'].tail(7).values[0])*100000/df['Poblacion Pontevedra'].tail(1).values[0]
 
 #Data from Santiago
 df_day_sant = df_day[df_day['Area_Sanitaria']=='A.S. SANTIAGO E BARBANZA']
@@ -100,6 +113,8 @@ new_total_deaths_sant = df_day_sant['Exitus'].values[0]
 new_total_in_hospital_sant = df_day_sant['Camas_Ocupadas_HOS'].values[0]
 new_total_intensive_care_sant = df_day_sant['Camas_Ocupadas_UCI'].values[0]
 new_total_pcr_sant = df_day_sant['Probas_Realizadas_PCR'].values[0]
+new_IA_14_sant = (new_total_cases_sant-df['Total Casos Santiago'].tail(14).values[0])*100000/df['Poblacion Santiago'].tail(1).values[0]
+new_IA_7_sant = (new_total_cases_sant-df['Total Casos Santiago'].tail(7).values[0])*100000/df['Poblacion Santiago'].tail(1).values[0]
 
 #Data from Vigo
 df_day_vigo = df_day[df_day['Area_Sanitaria']=='A.S. VIGO']
@@ -109,21 +124,41 @@ new_total_deaths_vigo = df_day_vigo['Exitus'].values[0]
 new_total_in_hospital_vigo = df_day_vigo['Camas_Ocupadas_HOS'].values[0]
 new_total_intensive_care_vigo = df_day_vigo['Camas_Ocupadas_UCI'].values[0]
 new_total_pcr_vigo = df_day_vigo['Probas_Realizadas_PCR'].values[0]
+new_IA_14_vigo = (new_total_cases_vigo-df['Total Casos Vigo'].tail(14).values[0])*100000/df['Poblacion Vigo'].tail(1).values[0]
+new_IA_7_vigo = (new_total_cases_vigo-df['Total Casos Vigo'].tail(7).values[0])*100000/df['Poblacion Vigo'].tail(1).values[0]
+
+#Repeat population data
+new_pop_galicia = df["Poblacion Galicia"].tail(1).values[0]
+new_pop_coru = df["Poblacion A Coruna"].tail(1).values[0]
+new_pop_ferrol = df["Poblacion Ferrol"].tail(1).values[0]
+new_pop_lugo = df["Poblacion Lugo"].tail(1).values[0]
+new_pop_ourense = df["Poblacion Ourense"].tail(1).values[0]
+new_pop_ponte = df["Poblacion Pontevedra"].tail(1).values[0]
+new_pop_sant = df["Poblacion Santiago"].tail(1).values[0]
+new_pop_vigo = df["Poblacion Vigo"].tail(1).values[0]
 
 df_new_row = pd.DataFrame([[new_days, today.strftime("%d/%m/%Y"), new_total_cases, new_total_recovered, new_total_deaths,
                            new_pcr, new_cases, new_deaths, new_letality_rate, new_total_in_hospital, new_total_intensive_care,
-                           new_in_hospital, new_intensive_care, new_total_cases_coruna, new_total_recovered_coruna,
+                           new_in_hospital, new_intensive_care, new_IA_14, new_IA_7, new_total_cases_coruna, new_total_recovered_coruna,
                            new_total_deaths_coruna, new_total_in_hospital_coruna, new_total_intensive_care_coruna,
-                           new_total_pcr_coruna, new_total_cases_ferrol, new_total_recovered_ferrol, new_total_deaths_ferrol,
+                           new_total_pcr_coruna, new_IA_14_coru, new_IA_7_coru, new_total_cases_ferrol, 
+                            new_total_recovered_ferrol, new_total_deaths_ferrol,
                            new_total_in_hospital_ferrol, new_total_intensive_care_ferrol, new_total_pcr_ferrol,
+                            new_IA_14_ferrol, new_IA_7_ferrol,
                            new_total_cases_lugo, new_total_recovered_lugo, new_total_deaths_lugo, new_total_in_hospital_lugo,
-                           new_total_intensive_care_lugo, new_total_pcr_lugo, new_total_cases_ourense, new_total_recovered_ourense,
+                           new_total_intensive_care_lugo, new_total_pcr_lugo, new_IA_14_lugo, new_IA_7_lugo,
+                            new_total_cases_ourense, new_total_recovered_ourense,
                            new_total_deaths_ourense, new_total_in_hospital_ourense, new_total_intensive_care_ourense,
-                           new_total_pcr_ourense, new_total_cases_ponte, new_total_recovered_ponte, new_total_deaths_ponte,
-                           new_total_in_hospital_ponte, new_total_intensive_care_ponte, new_total_pcr_ponte, new_total_cases_sant,
+                           new_total_pcr_ourense, new_IA_14_ourense, new_IA_7_ourense,
+                            new_total_cases_ponte, new_total_recovered_ponte, new_total_deaths_ponte,
+                           new_total_in_hospital_ponte, new_total_intensive_care_ponte, new_total_pcr_ponte, 
+                            new_IA_14_ponte, new_IA_7_sant, new_total_cases_sant,
                            new_total_recovered_sant, new_total_deaths_sant, new_total_in_hospital_sant, new_total_intensive_care_sant,
-                           new_total_pcr_sant, new_total_cases_vigo, new_total_recovered_vigo, new_total_deaths_vigo,
-                           new_total_in_hospital_vigo, new_total_intensive_care_vigo, new_total_pcr_vigo]],columns=df.keys(),
+                           new_total_pcr_sant, new_IA_14_sant, new_IA_7_sant,
+                            new_total_cases_vigo, new_total_recovered_vigo, new_total_deaths_vigo,
+                           new_total_in_hospital_vigo, new_total_intensive_care_vigo, new_total_pcr_vigo,
+                           new_IA_14_vigo, new_IA_7_vigo, new_pop_galicia, new_pop_coru, new_pop_ferrol, new_pop_lugo,
+                           new_pop_ourense, new_pop_ponte, new_pop_sant, new_pop_vigo]],columns=df.keys(),
                          index=[new_days])
     
 
