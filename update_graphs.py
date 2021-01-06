@@ -126,3 +126,39 @@ fig.update_layout( title="Evolución de la ocupación hospitalaria",
     yaxis_title="")
 
 fig.write_html("./docs/evolution_hospital_occupation.html")
+
+fig = go.Figure()
+
+fig.add_trace(go.Indicator(
+    mode = "number+gauge+delta",
+    gauge = {'shape': "bullet", 'axis': {'range': [None, 400]},
+             'threshold': {
+                'line': {'color': "red", 'width': 2},
+                'thickness': 0.75,
+                'value': 250},
+            'bar': {'color': "darkblue"},
+             'steps': [
+                {'range': [0, 25], 'color': "lightgreen"}]},
+    delta = {'reference': df["IA 14"].tail(2).values[0],'increasing':{'color':'red'},'decreasing':{'color':'green'}},
+    value = df["IA 14"].tail(1).values[0],
+    domain = {'x': [0.1, 1], 'y': [0.5, 0.8]},
+    title = {'text': "IA a 14 días"}))
+
+fig.add_trace(go.Indicator(
+    mode = "number+gauge+delta",
+    gauge = {'shape': "bullet", 'axis': {'range': [None, 400]},
+             'threshold': {
+                'line': {'color': "red", 'width': 2},
+                'thickness': 0.75,
+                'value': 125},
+            'bar': {'color': "darkblue"},
+             'steps': [
+                {'range': [0, 10], 'color': "lightgreen"}]},
+    delta = {'reference': df["IA 7"].tail(2).values[0],'increasing':{'color':'red'},'decreasing':{'color':'green'}},
+    value = df["IA 7"].tail(1).values[0],
+    domain = {'x': [0.1, 1], 'y': [0, 0.3]},
+    title = {'text': "IA a 7 días"}))
+
+fig.update_layout( title="Incidencia Acumulada en Galicia")
+
+fig.write_html("./docs/incidence_rate_galicia.html")

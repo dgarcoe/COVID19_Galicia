@@ -4,6 +4,8 @@ Estas estadísticas se actualizan con los valores del último día a las 18 PM.
 
 {% include_relative total_cases.html %}
 
+{% include_relative  incidence_rate_galicia.html %}
+
 {% include_relative  bars_new_cases_cured.html %}
 
 ## Estadísticas históricas
