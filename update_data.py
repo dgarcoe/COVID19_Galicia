@@ -49,8 +49,8 @@ new_intensive_care = new_total_intensive_care-df['UCI'].tail(1).values[0]
 new_IA_14 = (new_total_cases-df['Total casos'].tail(14).values[0])*100000/df['Poblacion Galicia'].tail(1).values[0]
 new_IA_7 = (new_total_cases-df['Total casos'].tail(7).values[0])*100000/df['Poblacion Galicia'].tail(1).values[0]
 
-#Data from A CoruÒa
-df_day_coruna = df_day[df_day['Area_Sanitaria']=='A.S. A CORU—A E CEE']
+#Data from A Coruna
+df_day_coruna = df_day[df_day['Area_Sanitaria']=='A.S. A CORU√ëA E CEE']
 new_total_cases_coruna = df_day_coruna['Casos_Totais'].values[0]
 new_total_recovered_coruna = df_day_coruna['Pacientes_Con_Alta'].values[0]
 new_total_deaths_coruna = df_day_coruna['Exitus'].values[0]
@@ -73,7 +73,7 @@ new_IA_7_ferrol = (new_total_cases_ferrol-df['Total Casos Ferrol'].tail(7).value
 
 
 #Data from Lugo
-df_day_lugo = df_day[df_day['Area_Sanitaria']=='A.S. LUGO, A MARI—A E MONFORTE']
+df_day_lugo = df_day[df_day['Area_Sanitaria']=='A.S. LUGO, A MARI√ëA E MONFORTE']
 new_total_cases_lugo = df_day_lugo['Casos_Totais'].values[0]
 new_total_recovered_lugo = df_day_lugo['Pacientes_Con_Alta'].values[0]
 new_total_deaths_lugo = df_day_lugo['Exitus'].values[0]
@@ -84,7 +84,7 @@ new_IA_14_lugo = (new_total_cases_lugo-df['Total Casos Lugo'].tail(14).values[0]
 new_IA_7_lugo = (new_total_cases_lugo-df['Total Casos Lugo'].tail(7).values[0])*100000/df['Poblacion Lugo'].tail(1).values[0]
 
 #Data from Ourense
-df_day_ourense = df_day[df_day['Area_Sanitaria']=='A.S. OURENSE, VERÕN E O BARCO']
+df_day_ourense = df_day[df_day['Area_Sanitaria']=='A.S. OURENSE, VER√çN E O BARCO']
 new_total_cases_ourense = df_day_ourense['Casos_Totais'].values[0]
 new_total_recovered_ourense = df_day_ourense['Pacientes_Con_Alta'].values[0]
 new_total_deaths_ourense = df_day_ourense['Exitus'].values[0]
@@ -95,7 +95,7 @@ new_IA_14_ourense = (new_total_cases_ourense-df['Total Casos Ourense'].tail(14).
 new_IA_7_ourense = (new_total_cases_ourense-df['Total Casos Ourense'].tail(7).values[0])*100000/df['Poblacion Ourense'].tail(1).values[0]
 
 #Data from Pontevedra
-df_day_ponte = df_day[df_day['Area_Sanitaria']=='A.S. PONTEVEDRA E O SALN…S']
+df_day_ponte = df_day[df_day['Area_Sanitaria']=='A.S. PONTEVEDRA E O SALN√âS']
 new_total_cases_ponte = df_day_ponte['Casos_Totais'].values[0]
 new_total_recovered_ponte = df_day_ponte['Pacientes_Con_Alta'].values[0]
 new_total_deaths_ponte = df_day_ponte['Exitus'].values[0]
