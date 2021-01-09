@@ -207,7 +207,9 @@ fig = px.choropleth_mapbox(df_areas, geojson=gj_regions, locations='Area', featu
                            category_orders=categories,
                            mapbox_style="white-bg",
                            zoom=7.1, height = 600, center = {"lat": 42.789886, "lon": -8.003869},
-                           opacity=1
+                           opacity=1,
+                           hover_name='Area',
+                           hover_data={"Area":False,"Riesgo IA 14":False,"IA 14":True}
                           )
 fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 
@@ -219,7 +221,9 @@ fig = px.choropleth_mapbox(df_areas, geojson=gj_regions, locations='Area', featu
                            category_orders=categories,
                            mapbox_style="white-bg",
                            zoom=7.1, height = 600, center = {"lat": 42.789886, "lon": -8.003869},
-                           opacity=1
+                           opacity=1,
+			   hover_name='Area',
+			   hover_data={"Area":False,"Riesgo IA 7":False,"IA 7":True}
                           )
 fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 
