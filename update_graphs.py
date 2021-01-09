@@ -2,6 +2,7 @@ from plotly.offline import init_notebook_mode, iplot
 import plotly.graph_objects as go
 import plotly.express as px
 import pandas as pd
+import geojson
 
 data = './data_galicia_covid.csv'
 data_vac = './data_galicia_vaccination.csv'
@@ -177,4 +178,49 @@ fig.update_layout( title="Evolución de la vacunación en Galicia",
 fig.write_html("./docs/vaccination_evolution_galicia.html")
 
 
+with open('Areas_sanitarias.geojson',encoding='utf-8') as f:
+    gj_regions = geojson.load(f)
+    
+data = [["A Coruña y Cee",df["IA 14 Coruna"].tail(1).values[0],df["IA 7 Coruna"].tail(1).values[0]],
+       ["Ferrol",df["IA 14 Ferrol"].tail(1).values[0],df["IA 7 Ferrol"].tail(1).values[0]],
+       ["Lugo, A Mariña y Monforte de Lemos",df["IA 14 Lugo"].tail(1).values[0],df["IA 7 Lugo"].tail(1).values[0]],
+        ["Ourense, Verín y O Barco de Valdeorras",df["IA 14 Ourense"].tail(1).values[0],df["IA 7 Ourense"].tail(1).values[0]],
+       ["Pontevedra y O Salnés",df["IA 14 Pontevedra"].tail(1).values[0],df["IA 7 Pontevedra"].tail(1).values[0]],
+       ["Santiago de Compostela y Barbanza",df["IA 14 Santiago"].tail(1).values[0],df["IA 7 Santiago"].tail(1).values[0]],
+       ["Vigo",df["IA 14 Vigo"].tail(1).values[0],df["IA 7 Vigo"].tail(1).values[0]]]
 
+df_areas = pd.DataFrame(data,columns=['Area','IA 14','IA 7'])
+
+df_areas["Riesgo IA 14"] = pd.cut(x=df_areas["IA 14"],bins = [0,25,50,150,250,1000], 
+                                  labels=['Normal','Bajo','Medio','Alto','Extremo'])
+
+df_areas["Riesgo IA 7"] = pd.cut(x=df_areas["IA 7"],bins = [0,10,25,75,125,1000], 
+                                  labels=['Normal','Bajo','Medio','Alto','Extremo'])
+
+colour_discrete_scale = {'Normal':'lightgreen','Bajo':'khaki','Medio':'orange','Alto':'orangered','Extremo':'darkred'}
+categories = {'Riesgo IA 14': ['Extremo','Alto','Medio','Normal','Bajo']}
+
+    
+fig = px.choropleth_mapbox(df_areas, geojson=gj_regions, locations='Area', featureidkey='properties.nom_area', 
+                           color='Riesgo IA 14',
+                           color_discrete_map=colour_discrete_scale,
+                           category_orders=categories,
+                           mapbox_style="white-bg",
+                           zoom=7.1, height = 600, center = {"lat": 42.789886, "lon": -8.003869},
+                           opacity=1
+                          )
+fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+
+fig.write_html("./docs/risk_region_IA14.html")
+
+fig = px.choropleth_mapbox(df_areas, geojson=gj_regions, locations='Area', featureidkey='properties.nom_area',
+                           color='Riesgo IA 7',
+                           color_discrete_map=colour_discrete_scale,
+                           category_orders=categories,
+                           mapbox_style="white-bg",
+                           zoom=7.1, height = 600, center = {"lat": 42.789886, "lon": -8.003869},
+                           opacity=1
+                          )
+fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+
+fig.write_html("./docs/risk_region_IA7.html")
