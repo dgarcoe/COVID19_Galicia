@@ -4,8 +4,10 @@ import plotly.express as px
 import pandas as pd
 
 data = './data_galicia_covid.csv'
+data_vac = './data_galicia_vaccination.csv'
 
 df = pd.read_csv(data)
+df_vac = pd.read_csv(data_vac)
 
 fig = go.Figure()
 
@@ -162,3 +164,17 @@ fig.add_trace(go.Indicator(
 fig.update_layout( title="Incidencia Acumulada en Galicia")
 
 fig.write_html("./docs/incidence_rate_galicia.html")
+
+fig = go.Figure()
+
+fig.add_trace(go.Scatter(x=df_vac["Fecha"],y=df_vac["Dosis entregadas"],mode='lines',name="Dosis entregadas",fill='tonexty'))
+fig.add_trace(go.Scatter(x=df_vac["Fecha"],y=df_vac["Dosis administradas"],mode='lines',name="Dosis administradas",fill='tozeroy',marker_color='lightgreen'))
+
+fig.update_layout( title="Evolución de la vacunación en Galicia",
+    xaxis_title="",
+    yaxis_title="")
+
+fig.write_html("./docs/vaccination_evolution_galicia.html")
+
+
+
