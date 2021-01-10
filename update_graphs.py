@@ -4,6 +4,7 @@ import plotly.express as px
 import pandas as pd
 import geojson
 
+#Read datasets
 data = './data_galicia_covid.csv'
 data_vac = './data_galicia_vaccination.csv'
 
@@ -16,6 +17,7 @@ df["Día semana"] = df["Fecha"].dt.day_name(locale='Spanish')
 df["Semana"] = df["Fecha"].dt.isocalendar().week
 df["Mes"] = df["Fecha"].dt.month_name(locale='Spanish')
 
+#Plot key indicators
 fig = go.Figure()
 
 fig.add_trace(go.Indicator(
@@ -74,6 +76,7 @@ fig.add_trace(go.Indicator(
 
 fig.write_html('./docs/total_cases.html')
 
+#Plot evolution of new cases
 layout=go.Layout(title = 'Evolución de nuevos casos en Galicia')
 data = go.Scatter(x=df["Fecha"],y=df["Nuevos casos"],mode='lines',name="Evolución de nuevos casos")
 
@@ -81,6 +84,8 @@ fig = go.Figure(data,layout)
 
 fig.write_html("./docs/historian_new_cases_galicia.html")
 
+
+#Plot evolution of active cases
 layout=go.Layout(title = 'Evolución de casos activos en Galicia')
 data = go.Scatter(x=df["Fecha"],y=df["Total casos"]-df["Total altas"]-df['Total fallecidos'],mode='lines',name="Evolución de casos activos")
 
@@ -88,6 +93,7 @@ fig = go.Figure(data,layout)
 
 fig.write_html("./docs/historian_active_cases_galicia.html")
 
+#Plot evolution of letality rate
 layout=go.Layout(title = 'Evolución de la tasa de letalidad en Galicia (%)')
 data = go.Scatter(x=df["Fecha"],y=df["Tasa de letalidad"],mode='lines',name="Evolución de la tasa de letalidad")
 
@@ -95,6 +101,7 @@ fig = go.Figure(data,layout)
 
 fig.write_html("./docs/letality_rate_evolution.html")
 
+#Plot new cases and cured per region
 last_values = [df["Total Casos Vigo"].tail(1).values[0]-df["Total Casos Vigo"].tail(2).values[0],
                df["Total Casos Santiago"].tail(1).values[0]-df["Total Casos Santiago"].tail(2).values[0],
                df["Total Casos Pontevedra"].tail(1).values[0]-df["Total Casos Pontevedra"].tail(2).values[0],
@@ -125,6 +132,7 @@ fig.update_layout( title="Nuevos casos y altas por área sanitaria",
 
 fig.write_html("./docs/bars_new_cases_cured.html")
 
+#Plot evolution of hospital occupation
 fig = go.Figure()
 
 fig.add_trace(go.Scatter(x=df["Fecha"],y=df["Hospitalizados"],mode='lines',name="Hospitalizados",fill='tonexty'))
@@ -136,6 +144,7 @@ fig.update_layout( title="Evolución de la ocupación hospitalaria",
 
 fig.write_html("./docs/evolution_hospital_occupation.html")
 
+#Plot incidence rate indicators
 fig = go.Figure()
 
 fig.add_trace(go.Indicator(
@@ -172,6 +181,7 @@ fig.update_layout( title="Incidencia Acumulada en Galicia")
 
 fig.write_html("./docs/incidence_rate_galicia.html")
 
+#Plot vaccination data
 fig = go.Figure()
 
 fig.add_trace(go.Scatter(x=df_vac["Fecha"],y=df_vac["Dosis entregadas"],mode='lines',name="Dosis entregadas",fill='tonexty'))
@@ -183,7 +193,7 @@ fig.update_layout( title="Evolución de la vacunación en Galicia",
 
 fig.write_html("./docs/vaccination_evolution_galicia.html")
 
-
+#Plot incidence rate by region
 with open('Areas_sanitarias.geojson',encoding='utf-8') as f:
     gj_regions = geojson.load(f)
 
@@ -235,6 +245,7 @@ fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 
 fig.write_html("./docs/risk_region_IA7.html")
 
+#Plot 2020 heatmap of new cases
 df_year = df[df['Fecha'].dt.year == 2020]
 
 order_heatmap = ['Domingo','Sábado','Viernes','Jueves','Miércoles','Martes','Lunes']
@@ -253,3 +264,15 @@ fig.update_layout(
     yaxis_title="Día dela semana")
 
 fig.write_html("./docs/heatmap_new_cases_2020.html")
+
+#Plot 2020 boxplot of new cases
+order_boxplot = ['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo']
+
+fig = go.Figure()
+fig.add_trace(go.Box(y=df_year["Nuevos casos"],x=df_year["Mes"],boxmean=True,fillcolor='rgba(255, 65, 54, 0.5)'))
+fig.update_layout(
+    title='Distribución de nuevos casos por mes',
+    xaxis={'categoryarray':order_boxplot},
+    )
+
+fig.write_html("./docs/boxplot_new_cases_month_2020.html")
