@@ -32,4 +32,8 @@ Estas estadísticas contienen la evolución histórica de los indicadores.
 
 {% include_relative letality_rate_evolution.html %}
 
+## Análisis del año 2020
 
+{% include_relative heatmap_new_cases_2020.html %}
+
+{% include_relative  boxplot_new_cases_month_2020.html %}
