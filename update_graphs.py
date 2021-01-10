@@ -14,7 +14,7 @@ df["Fecha"] = pd.to_datetime(df["Fecha"],format="%d/%m/%Y")
 
 df["Día semana"] = df["Fecha"].dt.day_name(locale='Spanish')
 df["Semana"] = df["Fecha"].dt.isocalendar().week
-df["Mes"] = df["Fecha"].dt.month
+df["Mes"] = df["Fecha"].dt.month_name(locale='Spanish')
 
 fig = go.Figure()
 
@@ -234,3 +234,22 @@ fig = px.choropleth_mapbox(df_areas, geojson=gj_regions, locations='Area', featu
 fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 
 fig.write_html("./docs/risk_region_IA7.html")
+
+df_year = df[df['Fecha'].dt.year == 2020]
+
+order_heatmap = ['Domingo','Sábado','Viernes','Jueves','Miércoles','Martes','Lunes']
+
+fig = go.Figure(data=go.Heatmap(
+        z=df_year["Nuevos casos"],
+        x=df_year["Semana"],
+        y=df_year["Día semana"],
+        colorscale='YlOrRd',hoverongaps = False))
+
+fig.update_layout(
+    title='Nuevos casos por semana y día de la semana',
+    yaxis={'categoryarray':order_heatmap,'showgrid':False},
+    xaxis={'showgrid':False},
+    xaxis_title="Semana",
+    yaxis_title="Día dela semana")
+
+fig.write_html("./docs/heatmap_new_cases_2020.html")
