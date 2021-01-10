@@ -10,6 +10,12 @@ data_vac = './data_galicia_vaccination.csv'
 df = pd.read_csv(data)
 df_vac = pd.read_csv(data_vac)
 
+df["Fecha"] = pd.to_datetime(df["Fecha"],format="%d/%m/%Y")
+
+df["Día semana"] = df["Fecha"].dt.day_name(locale='Spanish')
+df["Semana"] = df["Fecha"].dt.isocalendar().week
+df["Mes"] = df["Fecha"].dt.month
+
 fig = go.Figure()
 
 fig.add_trace(go.Indicator(
@@ -107,7 +113,7 @@ last_cured_values = [df["Total Altas Vigo"].tail(1).values[0]-df["Total Altas Vi
 
 fig = go.Figure()
 
-fig.add_trace(go.Bar(x=last_values, y=["Vigo","Santiago","Pontevedra","Ourense","Lugo","Ferrol","A Coruña"], orientation='h', 
+fig.add_trace(go.Bar(x=last_values, y=["Vigo","Santiago","Pontevedra","Ourense","Lugo","Ferrol","A Coruña"], orientation='h',
                      name='Nuevos casos',text=last_values, textposition='inside',marker_color='indianred'))
 
 fig.add_trace(go.Bar(x=last_cured_values, y=["Vigo","Santiago","Pontevedra","Ourense","Lugo","Ferrol","A Coruña"], orientation='h',
@@ -180,7 +186,7 @@ fig.write_html("./docs/vaccination_evolution_galicia.html")
 
 with open('Areas_sanitarias.geojson',encoding='utf-8') as f:
     gj_regions = geojson.load(f)
-    
+
 data = [["A Coruña y Cee",df["IA 14 Coruna"].tail(1).values[0],df["IA 7 Coruna"].tail(1).values[0]],
        ["Ferrol",df["IA 14 Ferrol"].tail(1).values[0],df["IA 7 Ferrol"].tail(1).values[0]],
        ["Lugo, A Mariña y Monforte de Lemos",df["IA 14 Lugo"].tail(1).values[0],df["IA 7 Lugo"].tail(1).values[0]],
@@ -191,17 +197,17 @@ data = [["A Coruña y Cee",df["IA 14 Coruna"].tail(1).values[0],df["IA 7 Coruna"
 
 df_areas = pd.DataFrame(data,columns=['Area','IA 14','IA 7'])
 
-df_areas["Riesgo IA 14"] = pd.cut(x=df_areas["IA 14"],bins = [0,25,50,150,250,1000], 
+df_areas["Riesgo IA 14"] = pd.cut(x=df_areas["IA 14"],bins = [0,25,50,150,250,1000],
                                   labels=['Normal','Bajo','Medio','Alto','Extremo'])
 
-df_areas["Riesgo IA 7"] = pd.cut(x=df_areas["IA 7"],bins = [0,10,25,75,125,1000], 
+df_areas["Riesgo IA 7"] = pd.cut(x=df_areas["IA 7"],bins = [0,10,25,75,125,1000],
                                   labels=['Normal','Bajo','Medio','Alto','Extremo'])
 
 colour_discrete_scale = {'Normal':'lightgreen','Bajo':'khaki','Medio':'orange','Alto':'orangered','Extremo':'darkred'}
 categories = {'Riesgo IA 14': ['Extremo','Alto','Medio','Normal','Bajo']}
 
-    
-fig = px.choropleth_mapbox(df_areas, geojson=gj_regions, locations='Area', featureidkey='properties.nom_area', 
+
+fig = px.choropleth_mapbox(df_areas, geojson=gj_regions, locations='Area', featureidkey='properties.nom_area',
                            color='Riesgo IA 14',
                            color_discrete_map=colour_discrete_scale,
                            category_orders=categories,
