@@ -3,6 +3,10 @@ import plotly.graph_objects as go
 import plotly.express as px
 import pandas as pd
 import geojson
+import locale
+
+locale.setlocale(locale.LC_ALL,'es_ES.UTF-8')
+
 
 #Read datasets
 data = './data_galicia_covid.csv'
@@ -13,9 +17,9 @@ df_vac = pd.read_csv(data_vac)
 
 df["Fecha"] = pd.to_datetime(df["Fecha"],format="%d/%m/%Y")
 
-df["Día semana"] = df["Fecha"].dt.day_name(locale='Spanish')
-df["Semana"] = df["Fecha"].dt.isocalendar().week
-df["Mes"] = df["Fecha"].dt.month_name(locale='Spanish')
+df["Día semana"] = df["Fecha"].dt.day_name()
+df["Semana"] = df["Fecha"].dt.week
+df["Mes"] = df["Fecha"].dt.month_name()
 
 #Plot key indicators
 fig = go.Figure()
@@ -248,7 +252,7 @@ fig.write_html("./docs/risk_region_IA7.html")
 #Plot 2020 heatmap of new cases
 df_year = df[df['Fecha'].dt.year == 2020]
 
-order_heatmap = ['Domingo','Sábado','Viernes','Jueves','Miércoles','Martes','Lunes']
+order_heatmap = ['Sunday','Saturday','Friday','Thursday','Wednesday','Tuesday','Monday']
 
 fig = go.Figure(data=go.Heatmap(
         z=df_year["Nuevos casos"],
@@ -266,7 +270,7 @@ fig.update_layout(
 fig.write_html("./docs/heatmap_new_cases_2020.html")
 
 #Plot 2020 boxplot of new cases
-order_boxplot = ['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo']
+order_boxplot = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
 
 fig = go.Figure()
 fig.add_trace(go.Box(y=df_year["Nuevos casos"],x=df_year["Mes"],boxmean=True,fillcolor='rgba(255, 65, 54, 0.5)'))
