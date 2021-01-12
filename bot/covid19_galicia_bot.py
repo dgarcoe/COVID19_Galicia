@@ -1,3 +1,4 @@
+import pandas as pd
 import telebot
 from telebot import types
 
@@ -7,7 +8,7 @@ commands = {
     'getIA'       : 'Devolve unha imaxe co estado actual da Incidencia Acumulada a 7 e 14 días en toda Galicia'
 }
 
-bot = telebot.TeleBot("***TOKEN***", parse_mode=None)
+bot = telebot.TeleBot("", parse_mode=None)
 
 # help page
 @bot.message_handler(commands=['help'])
@@ -19,4 +20,14 @@ def command_help(m):
         help_text += commands[key] + "\n"
     bot.send_message(cid, help_text)  # send the generated help page
 
+# kpis page
+@bot.message_handler(commands=['getKpis'])
+def command_help(m):
+    cid = m.chat.id
+    data = './data_galicia_covid.csv'  
+    df = pd.read_csv(data)
+    kpi_text = '\U0001F7E2  Total de casos : '+str(df['Total casos'].tail(1).values[0])
+    bot.send_message(cid, kpi_text) 
+
+print('COVID-19 Telegram Bot started and waiting for messages!')
 bot.polling()
