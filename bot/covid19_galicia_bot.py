@@ -222,10 +222,10 @@ def command_start(m):
 def command_help(m):
     logger.info("/help command from "+str(m.from_user.id)+" "+m.from_user.first_name)
     cid = m.chat.id
-    help_text = "Os seguintes comandos están dispoñibles: \n"
+    help_text = "Os seguintes comandos están dispoñibles: \n\n"
     for key in commands:  # generate help text out of the commands dictionary defined at the top
         help_text += "/" + key + ": "
-        help_text += commands[key] + "\n"
+        help_text += commands[key] + "\n\n"
     bot.send_message(cid, help_text)  # send the generated help page
 
 # kpis page
