@@ -210,6 +210,11 @@ def response_areas():
 
     return area_text
 
+# start page
+@bot.message_handler(commands=['start'])
+def command_start(m):
+    logger.info("/start command from "+str(m.from_user.id)+" "+m.from_user.first_name)
+    bot.send_message(cid,'Benvido/a a este bot no que se ofrece información diaria da evolución da COVID-19 en Galicia. Podes ver os comandos dispoñibles con /help' ) 
 
 # help page
 @bot.message_handler(commands=['help'])
