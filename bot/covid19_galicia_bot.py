@@ -152,7 +152,7 @@ def response_areas():
     hosp_coru = str(df["Total Hospitalizados A Coruna"].tail(1).values[0])
     uci_coru = str(df["Total UCI A Coruna"].tail(1).values[0])
 
-    area_text += "A Coruña - "+emojis["ill"]+inc_cases_coru+" "+emojis["cured"]+inc_cured_coru+" "+emojis["death"]+inc_dead_coru+" "+emojis["hospital"]+hosp_coru+" "+emojis["uci"]+uci_coru
+    area_text += "A Coruña       "+emojis["ill"]+inc_cases_coru+" "+emojis["cured"]+inc_cured_coru+" "+emojis["death"]+inc_dead_coru+"\n                        "+emojis["hospital"]+hosp_coru+" "+emojis["uci"]+uci_coru
     area_text += "\n\n"
 
     inc_cured_fer = str(df["Total Altas Ferrol"].tail(1).values[0]-df["Total Altas Ferrol"].tail(2).values[0])
@@ -161,7 +161,7 @@ def response_areas():
     hosp_fer = str(df["Total Hospitalizados Ferrol"].tail(1).values[0])
     uci_fer = str(df["Total UCI Ferrol"].tail(1).values[0])
 
-    area_text += "Ferrol - "+emojis["ill"]+inc_cases_fer+" "+emojis["cured"]+inc_cured_fer+" "+emojis["death"]+inc_dead_fer+" "+emojis["hospital"]+hosp_fer+" "+emojis["uci"]+uci_fer
+    area_text += "Ferrol             "+emojis["ill"]+inc_cases_fer+" "+emojis["cured"]+inc_cured_fer+" "+emojis["death"]+inc_dead_fer+"\n                        "+emojis["hospital"]+hosp_fer+" "+emojis["uci"]+uci_fer
     area_text += "\n\n"
 
     inc_cured_lugo = str(df["Total Altas Lugo"].tail(1).values[0]-df["Total Altas Lugo"].tail(2).values[0])
@@ -170,7 +170,7 @@ def response_areas():
     hosp_lugo = str(df["Total Hospitalizados Lugo"].tail(1).values[0])
     uci_lugo = str(df["Total UCI Lugo"].tail(1).values[0])
 
-    area_text += "Lugo - "+emojis["ill"]+inc_cases_lugo+" "+emojis["cured"]+inc_cured_lugo+" "+emojis["death"]+inc_dead_lugo+" "+emojis["hospital"]+hosp_lugo+" "+emojis["uci"]+uci_lugo
+    area_text += "Lugo               "+emojis["ill"]+inc_cases_lugo+" "+emojis["cured"]+inc_cured_lugo+" "+emojis["death"]+inc_dead_lugo+"\n                        "+emojis["hospital"]+hosp_lugo+" "+emojis["uci"]+uci_lugo
     area_text += "\n\n"
 
     inc_cured_pont = str(df["Total Altas Pontevedra"].tail(1).values[0]-df["Total Altas Pontevedra"].tail(2).values[0])
@@ -179,7 +179,7 @@ def response_areas():
     hosp_pont = str(df["Total Hospitalizados Pontevedra"].tail(1).values[0])
     uci_pont = str(df["Total UCI Pontevedra"].tail(1).values[0])
 
-    area_text += "Pontevedra - "+emojis["ill"]+inc_cases_pont+" "+emojis["cured"]+inc_cured_pont+" "+emojis["death"]+inc_dead_pont+" "+emojis["hospital"]+hosp_pont+" "+emojis["uci"]+uci_pont
+    area_text += "Pontevedra   "+emojis["ill"]+inc_cases_pont+" "+emojis["cured"]+inc_cured_pont+" "+emojis["death"]+inc_dead_pont+"\n                        "+emojis["hospital"]+hosp_pont+" "+emojis["uci"]+uci_pont
     area_text += "\n\n"
 
     inc_cured_ou = str(df["Total Altas Ourense"].tail(1).values[0]-df["Total Altas Ourense"].tail(2).values[0])
@@ -188,7 +188,7 @@ def response_areas():
     hosp_ou = str(df["Total Hospitalizados Ourense"].tail(1).values[0])
     uci_ou = str(df["Total UCI Ourense"].tail(1).values[0])
 
-    area_text += "Ourense - "+emojis["ill"]+inc_cases_ou+" "+emojis["cured"]+inc_cured_ou+" "+emojis["death"]+inc_dead_ou+" "+emojis["hospital"]+hosp_ou+" "+emojis["uci"]+uci_ou
+    area_text += "Ourense        "+emojis["ill"]+inc_cases_ou+" "+emojis["cured"]+inc_cured_ou+" "+emojis["death"]+inc_dead_ou+"\n                        "+emojis["hospital"]+hosp_ou+" "+emojis["uci"]+uci_ou
     area_text += "\n\n"
 
     inc_cured_sant = str(df["Total Altas Santiago"].tail(1).values[0]-df["Total Altas Santiago"].tail(2).values[0])
@@ -197,7 +197,7 @@ def response_areas():
     hosp_sant = str(df["Total Hospitalizados Santiago"].tail(1).values[0])
     uci_sant = str(df["Total UCI Santiago"].tail(1).values[0])
 
-    area_text += "Santiago - "+emojis["ill"]+inc_cases_sant+" "+emojis["cured"]+inc_cured_sant+" "+emojis["death"]+inc_dead_sant+" "+emojis["hospital"]+hosp_sant+" "+emojis["uci"]+uci_sant
+    area_text += "Santiago        "+emojis["ill"]+inc_cases_sant+" "+emojis["cured"]+inc_cured_sant+" "+emojis["death"]+inc_dead_sant+"\n                        "+emojis["hospital"]+hosp_sant+" "+emojis["uci"]+uci_sant
     area_text += "\n\n"
 
     inc_cured_vigo = str(df["Total Altas Vigo"].tail(1).values[0]-df["Total Altas Vigo"].tail(2).values[0])
@@ -206,7 +206,7 @@ def response_areas():
     hosp_vigo = str(df["Total Hospitalizados Vigo"].tail(1).values[0])
     uci_vigo = str(df["Total UCI Vigo"].tail(1).values[0])
 
-    area_text += "Vigo - "+emojis["ill"]+inc_cases_vigo+" "+emojis["cured"]+inc_cured_vigo+" "+emojis["death"]+inc_dead_vigo+" "+emojis["hospital"]+hosp_vigo+" "+emojis["uci"]+uci_vigo
+    area_text += "Vigo                "+emojis["ill"]+inc_cases_vigo+" "+emojis["cured"]+inc_cured_vigo+" "+emojis["death"]+inc_dead_vigo+"\n                        "+emojis["hospital"]+hosp_vigo+" "+emojis["uci"]+uci_vigo
 
     return area_text
 
