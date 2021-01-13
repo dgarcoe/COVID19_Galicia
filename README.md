@@ -25,7 +25,7 @@ The following Python scripts are included in the code to automate data retrieval
 
 ## Telegram bot
 
-You can access to some of the data also through the Telegram bot @covid19_galicia_bot. Keep in mind that the bot is executing in a Raspberry Pi so please keep in mind that it may not be running always.
+You can access to some of the data also through the Telegram bot [@covid19_galicia_bot](https://t.me/covid19_galicia_bot). Keep in mind that the bot is executing in a Raspberry Pi so please keep in mind that it may not be running always.
 
 The following is a list of the available commands right now:
 
