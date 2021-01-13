@@ -38,7 +38,7 @@ commands = {
     'getAreas'    : 'Devolve os datos de cada área sanitaria no último dia ('+emojis["cured"]+' incremento curados, '+emojis["ill"]+' incremento casos, '+emojis["death"]+' incremento falecidos, '+emojis["hospital"]+' total hospitalizados, '+emojis["uci"]+' total UCIs)'
 }
 
-bot = telebot.TeleBot(token, parse_mode=None)
+bot = telebot.TeleBot(token, parse_mode=None, threaded=False)
 
 def response_main_kpis():
 
