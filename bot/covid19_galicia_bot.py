@@ -1,8 +1,17 @@
 import pandas as pd
 import telebot
 from telebot import types
+from dotenv import load_dotenv
+import os
+import logging
 
-data = '../data_galicia_covid.csv'
+logger = telebot.logger
+telebot.logger.setLevel(logging.INFO)
+
+load_dotenv()
+
+data = os.getenv('DATA_FILE')
+token = os.getenv('TOKEN')
 
 emojis = {
     'ok':'\U0001F7E2',
@@ -29,7 +38,7 @@ commands = {
     'getAreas'    : 'Devolve os datos de cada área sanitaria no último dia ('+emojis["cured"]+' incremento curados, '+emojis["ill"]+' incremento casos, '+emojis["death"]+' incremento falecidos, '+emojis["hospital"]+' total hospitalizados, '+emojis["uci"]+' total UCIs)'
 }
 
-bot = telebot.TeleBot("", parse_mode=None)
+bot = telebot.TeleBot(token, parse_mode=None)
 
 def response_main_kpis():
 
@@ -205,6 +214,7 @@ def response_areas():
 # help page
 @bot.message_handler(commands=['help'])
 def command_help(m):
+    logger.info("/help command from "+str(m.from_user.id)+" "+m.from_user.first_name)
     cid = m.chat.id
     help_text = "Os seguintes comandos están dispoñibles: \n"
     for key in commands:  # generate help text out of the commands dictionary defined at the top
@@ -214,31 +224,36 @@ def command_help(m):
 
 # kpis page
 @bot.message_handler(commands=['getKpis'])
-def command_help(m):
+def command_kpis(m):
+    logger.info("/getKpis command from "+str(m.from_user.id)+" "+m.from_user.first_name)
     cid = m.chat.id
     bot.send_message(cid, response_main_kpis()) 
 
 # IA page
 @bot.message_handler(commands=['getIA'])
-def command_help(m):
+def command_ia(m):
+    logger.info("/getIA command from "+str(m.from_user.id)+" "+m.from_user.first_name)
     cid = m.chat.id
     bot.send_message(cid, response_IA()) 
 
 # Date page
 @bot.message_handler(commands=['getDate'])
-def command_help(m):
+def command_date(m):
+    logger.info("/getDate command from "+str(m.from_user.id)+" "+m.from_user.first_name)
     cid = m.chat.id
     bot.send_message(cid, response_date()) 
 
 # Hospital page
 @bot.message_handler(commands=['getHosp'])
-def command_help(m):
+def command_hosp(m):
+    logger.info("/getHosp command from "+str(m.from_user.id)+" "+m.from_user.first_name)
     cid = m.chat.id
     bot.send_message(cid, response_hospital()) 
 
 # Areas page
 @bot.message_handler(commands=['getAreas'])
-def command_help(m):
+def command_areas(m):
+    logger.info("/getAreas command from "+str(m.from_user.id)+" "+m.from_user.first_name)
     cid = m.chat.id
     bot.send_message(cid, response_areas())
 
