@@ -265,4 +265,4 @@ def command_areas(m):
 
 
 print('COVID-19 Galicia Telegram Bot started and waiting for messages!')
-bot.polling()
+bot.infinity_polling()
