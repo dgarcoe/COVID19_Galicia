@@ -79,7 +79,6 @@ fig.add_trace(go.Indicator(
     title = "Total UCIs"))
 
 fig.write_html('./docs/total_cases.html')
-fig.write_image("images/fig1.png")
 
 #Plot evolution of new cases
 layout=go.Layout(title = 'Evolución de nuevos casos en Galicia')
