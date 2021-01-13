@@ -22,3 +22,16 @@ The following Python scripts are included in the code to automate data retrieval
 - [update_data.py](https://github.com/dgarcoe/COVID19_Galicia/blob/main/update_data.py) : Retrieves data from the official source and creates a new row in the dataset for each day.
 - [update-graphs.py](https://github.com/dgarcoe/COVID19_Galicia/blob/main/update_graphs.py) : Creates all the graphs to be included in the webpage in html format.
 - [update-repo.py](https://github.com/dgarcoe/COVID19_Galicia/blob/main/update_repo.py) : Launches the previous scripts and updates this repository.
+
+## Telegram bot
+
+You can access to some of the data also through the Telegram bot @covid19_galicia_bot. Keep in mind that the bot is executing in a Raspberry Pi so please keep in mind that it may not be running always.
+
+The following is a list of the available commands right now:
+
+- /help: Prints the bot help.
+- /getKpis: Prints the last day evolution of main KPIs in Galicia.
+- /getIA: Prints the last day incidence rate values.
+- /getHosp: Prints the last day hospital occupation data.
+- /getAreas: Prints main info from all the Galicia health regions.
+- /getDate: Prints the date when data has been last updated.
