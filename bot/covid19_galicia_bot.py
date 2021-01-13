@@ -4,14 +4,6 @@ from telebot import types
 
 data = '../data_galicia_covid.csv'
 
-commands = { 
-    'help'        : 'Devolve información dos comandos dispoñibles',
-    'getKpis'     : 'Devolve o estado dos indicadores principais no último día (casos totais, casos activos, altas e falecidos)',
-    'getIA'       : 'Devolve o estado actual da Incidencia Acumulada a 7 e 14 días en toda Galicia',
-    'getHosp' : 'Devolve o estado da ocupación hospitalaria no conxunto de Galicia',
-    'getDate'     : 'Devolve a data na que se fixo a última actualización de datos'
-}
-
 emojis = {
     'ok':'\U0001F7E2',
     'nok':'\U0001F534',
@@ -20,7 +12,21 @@ emojis = {
     'same':'\U00002194',
     'danger':'\U0001F7E0',
     'warning':'\U0001F7E1',
-    'calendar':'\U0001F4C5'
+    'calendar':'\U0001F4C5',
+    'cured': '\U0001F49A',
+    'ill': '\U0001F912',
+    'death': '\U00002620',
+    'hospital': '\U0001F6CC',
+    'uci': '\U0001F6A8'
+}
+
+commands = { 
+    'help'        : 'Devolve información dos comandos dispoñibles',
+    'getKpis'     : 'Devolve o estado dos indicadores principais no último día (casos totais, casos activos, altas e falecidos)',
+    'getIA'       : 'Devolve o estado actual da Incidencia Acumulada a 7 e 14 días en toda Galicia',
+    'getHosp'     : 'Devolve o estado da ocupación hospitalaria no conxunto de Galicia',
+    'getDate'     : 'Devolve a data na que se fixo a última actualización de datos',
+    'getAreas'    : 'Devolve os datos de cada área sanitaria no último dia ('+emojis["cured"]+' incremento curados, '+emojis["ill"]+' incremento casos, '+emojis["death"]+' incremento falecidos, '+emojis["hospital"]+' total hospitalizados, '+emojis["uci"]+' total UCIs)'
 }
 
 bot = telebot.TeleBot("", parse_mode=None)
@@ -126,6 +132,75 @@ def response_hospital():
 
     return hosp_text
 
+def response_areas():
+    
+    df = pd.read_csv(data)
+    area_text =""
+
+    inc_cured_coru = str(df["Total Altas A Coruna"].tail(1).values[0]-df["Total Altas A Coruna"].tail(2).values[0])
+    inc_dead_coru = str(df["Total Fallecidos A Coruna"].tail(1).values[0]-df["Total Fallecidos A Coruna"].tail(2).values[0])
+    inc_cases_coru = str(df["Total Casos A Coruna"].tail(1).values[0]-df["Total Casos A Coruna"].tail(2).values[0])
+    hosp_coru = str(df["Total Hospitalizados A Coruna"].tail(1).values[0])
+    uci_coru = str(df["Total UCI A Coruna"].tail(1).values[0])
+
+    area_text += "A Coruña - "+emojis["ill"]+inc_cases_coru+" "+emojis["cured"]+inc_cured_coru+" "+emojis["death"]+inc_dead_coru+" "+emojis["hospital"]+hosp_coru+" "+emojis["uci"]+uci_coru
+    area_text += "\n\n"
+
+    inc_cured_fer = str(df["Total Altas Ferrol"].tail(1).values[0]-df["Total Altas Ferrol"].tail(2).values[0])
+    inc_dead_fer = str(df["Total Fallecidos Ferrol"].tail(1).values[0]-df["Total Fallecidos Ferrol"].tail(2).values[0])
+    inc_cases_fer = str(df["Total Casos Ferrol"].tail(1).values[0]-df["Total Casos Ferrol"].tail(2).values[0])
+    hosp_fer = str(df["Total Hospitalizados Ferrol"].tail(1).values[0])
+    uci_fer = str(df["Total UCI Ferrol"].tail(1).values[0])
+
+    area_text += "Ferrol - "+emojis["ill"]+inc_cases_fer+" "+emojis["cured"]+inc_cured_fer+" "+emojis["death"]+inc_dead_fer+" "+emojis["hospital"]+hosp_fer+" "+emojis["uci"]+uci_fer
+    area_text += "\n\n"
+
+    inc_cured_lugo = str(df["Total Altas Lugo"].tail(1).values[0]-df["Total Altas Lugo"].tail(2).values[0])
+    inc_dead_lugo = str(df["Total Fallecidos Lugo"].tail(1).values[0]-df["Total Fallecidos Lugo"].tail(2).values[0])
+    inc_cases_lugo = str(df["Total Casos Lugo"].tail(1).values[0]-df["Total Casos Lugo"].tail(2).values[0])
+    hosp_lugo = str(df["Total Hospitalizados Lugo"].tail(1).values[0])
+    uci_lugo = str(df["Total UCI Lugo"].tail(1).values[0])
+
+    area_text += "Lugo - "+emojis["ill"]+inc_cases_lugo+" "+emojis["cured"]+inc_cured_lugo+" "+emojis["death"]+inc_dead_lugo+" "+emojis["hospital"]+hosp_lugo+" "+emojis["uci"]+uci_lugo
+    area_text += "\n\n"
+
+    inc_cured_pont = str(df["Total Altas Pontevedra"].tail(1).values[0]-df["Total Altas Pontevedra"].tail(2).values[0])
+    inc_dead_pont = str(df["Total Fallecidos Pontevedra"].tail(1).values[0]-df["Total Fallecidos Pontevedra"].tail(2).values[0])
+    inc_cases_pont = str(df["Total Casos Pontevedra"].tail(1).values[0]-df["Total Casos Pontevedra"].tail(2).values[0])
+    hosp_pont = str(df["Total Hospitalizados Pontevedra"].tail(1).values[0])
+    uci_pont = str(df["Total UCI Pontevedra"].tail(1).values[0])
+
+    area_text += "Pontevedra - "+emojis["ill"]+inc_cases_pont+" "+emojis["cured"]+inc_cured_pont+" "+emojis["death"]+inc_dead_pont+" "+emojis["hospital"]+hosp_pont+" "+emojis["uci"]+uci_pont
+    area_text += "\n\n"
+
+    inc_cured_ou = str(df["Total Altas Ourense"].tail(1).values[0]-df["Total Altas Ourense"].tail(2).values[0])
+    inc_dead_ou = str(df["Total Fallecidos Ourense"].tail(1).values[0]-df["Total Fallecidos Ourense"].tail(2).values[0])
+    inc_cases_ou = str(df["Total Casos Ourense"].tail(1).values[0]-df["Total Casos Ourense"].tail(2).values[0])
+    hosp_ou = str(df["Total Hospitalizados Ourense"].tail(1).values[0])
+    uci_ou = str(df["Total UCI Ourense"].tail(1).values[0])
+
+    area_text += "Ourense - "+emojis["ill"]+inc_cases_ou+" "+emojis["cured"]+inc_cured_ou+" "+emojis["death"]+inc_dead_ou+" "+emojis["hospital"]+hosp_ou+" "+emojis["uci"]+uci_ou
+    area_text += "\n\n"
+
+    inc_cured_sant = str(df["Total Altas Santiago"].tail(1).values[0]-df["Total Altas Santiago"].tail(2).values[0])
+    inc_dead_sant = str(df["Total Fallecidos Santiago"].tail(1).values[0]-df["Total Fallecidos Santiago"].tail(2).values[0])
+    inc_cases_sant = str(df["Total Casos Santiago"].tail(1).values[0]-df["Total Casos Santiago"].tail(2).values[0])
+    hosp_sant = str(df["Total Hospitalizados Santiago"].tail(1).values[0])
+    uci_sant = str(df["Total UCI Santiago"].tail(1).values[0])
+
+    area_text += "Santiago - "+emojis["ill"]+inc_cases_sant+" "+emojis["cured"]+inc_cured_sant+" "+emojis["death"]+inc_dead_sant+" "+emojis["hospital"]+hosp_sant+" "+emojis["uci"]+uci_sant
+    area_text += "\n\n"
+
+    inc_cured_vigo = str(df["Total Altas Vigo"].tail(1).values[0]-df["Total Altas Vigo"].tail(2).values[0])
+    inc_dead_vigo = str(df["Total Fallecidos Vigo"].tail(1).values[0]-df["Total Fallecidos Vigo"].tail(2).values[0])
+    inc_cases_vigo = str(df["Total Casos Vigo"].tail(1).values[0]-df["Total Casos Vigo"].tail(2).values[0])
+    hosp_vigo = str(df["Total Hospitalizados Vigo"].tail(1).values[0])
+    uci_vigo = str(df["Total UCI Vigo"].tail(1).values[0])
+
+    area_text += "Vigo - "+emojis["ill"]+inc_cases_vigo+" "+emojis["cured"]+inc_cured_vigo+" "+emojis["death"]+inc_dead_vigo+" "+emojis["hospital"]+hosp_vigo+" "+emojis["uci"]+uci_vigo
+
+    return area_text
+
 
 # help page
 @bot.message_handler(commands=['help'])
@@ -160,6 +235,12 @@ def command_help(m):
 def command_help(m):
     cid = m.chat.id
     bot.send_message(cid, response_hospital()) 
+
+# Areas page
+@bot.message_handler(commands=['getAreas'])
+def command_help(m):
+    cid = m.chat.id
+    bot.send_message(cid, response_areas())
 
 
 print('COVID-19 Galicia Telegram Bot started and waiting for messages!')
