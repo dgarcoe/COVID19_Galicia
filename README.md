@@ -1,6 +1,10 @@
 # COVID-19 evolution in Galicia
 ***
-This repository hosts datasets retrieved from official sources regarding COVID-19 evolution in Galicia. It also includes a Github page where data is updated automatically every day by running a set of scripts at 10:30 PM that generate several graphs plotting the relevant information.
+This repository hosts datasets retrieved from official sources regarding COVID-19 evolution in Galicia. It also includes a Github page where data is updated automatically every day by running a set of scripts at 10:30 AM that generate several graphs plotting the relevant information.
+
+## Github Page
+
+[Evolución COVID-19 en Galicia](https://dgarcoe.github.io/COVID19_Galicia/)
 
 ## Datasets
 
