@@ -34,6 +34,7 @@ The following is a list of the available commands right now:
 - /getIA: Prints the last day incidence rate values.
 - /getHosp: Prints the last day hospital occupation data.
 - /getAreas: Prints main info from all the Galicia health regions.
+- /getVac: Prints main info related to the vaccination campaign in Galicia.
 - /getDate: Prints the date when data has been last updated.
 
 Profile bot picture image credit: Desiree Ho for the [Innovative Genomics Institute](https://innovativegenomics.org/free-covid-19-illustrations/).
