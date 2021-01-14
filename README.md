@@ -1,6 +1,10 @@
 # COVID-19 evolution in Galicia
 ***
-This repository hosts datasets retrieved from official sources regarding COVID-19 evolution in Galicia. It also includes a Github page where data is updated automatically every day by running a set of scripts at 10:30 PM that generate several graphs plotting the relevant information.
+This repository hosts datasets retrieved from official sources regarding COVID-19 evolution in Galicia. It also includes a Github page where data is updated automatically every day by running a set of scripts at 10:30 AM that generate several graphs plotting the relevant information.
+
+## Github Page
+
+[Evolución COVID-19 en Galicia](https://dgarcoe.github.io/COVID19_Galicia/)
 
 ## Datasets
 
@@ -13,7 +17,7 @@ At the moment two datasets are maintained in the repository:
 
 - Before the creation of the official coronavirus SERGAS web data was retrieved from daily press releases from [Xunta de Galicia](https://www.xunta.gal/notas-de-prensa). Data was manually saved in an Excel file.
 - [Official SERGAS web for coronavirus](https://coronavirus.sergas.gal/datos/#/gl-ES/galicia)
-- [Vaccination from Spain's Ministry of Health](https://www.mscbs.gob.es/profesionales/saludPublica/ccayes/alertasActual/nCov/vacunaCovid19.htm). For the moment this data is manually saved when updated.
+- [Vaccination data from Spain's Ministry of Health](https://www.mscbs.gob.es/profesionales/saludPublica/ccayes/alertasActual/nCov/vacunaCovid19.htm). For the moment this data is manually saved when updated.
 
 ## Scripts
 
@@ -25,7 +29,7 @@ The following Python scripts are included in the code to automate data retrieval
 
 ## Telegram bot
 
-You can access to some of the data also through the Telegram bot [@covid19_galicia_bot](https://t.me/covid19_galicia_bot). Keep in mind that the bot is executing in a Raspberry Pi so please keep in mind that it may not be running always.
+You can access to some of the data also through the Telegram bot [@covid19_galicia_bot](https://t.me/covid19_galicia_bot). Keep in mind that the bot is running in a Raspberry Pi at the moment so it may overload with too much queries.
 
 The following is a list of the available commands right now:
 
@@ -34,6 +38,7 @@ The following is a list of the available commands right now:
 - /getIA: Prints the last day incidence rate values.
 - /getHosp: Prints the last day hospital occupation data.
 - /getAreas: Prints main info from all the Galicia health regions.
+- /getVac: Prints main info related to the vaccination campaign in Galicia.
 - /getDate: Prints the date when data has been last updated.
 
 Profile bot picture image credit: Desiree Ho for the [Innovative Genomics Institute](https://innovativegenomics.org/free-covid-19-illustrations/).
