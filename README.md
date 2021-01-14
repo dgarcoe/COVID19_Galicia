@@ -13,7 +13,7 @@ At the moment two datasets are maintained in the repository:
 
 - Before the creation of the official coronavirus SERGAS web data was retrieved from daily press releases from [Xunta de Galicia](https://www.xunta.gal/notas-de-prensa). Data was manually saved in an Excel file.
 - [Official SERGAS web for coronavirus](https://coronavirus.sergas.gal/datos/#/gl-ES/galicia)
-- [Vaccination from Spain's Ministry of Health](https://www.mscbs.gob.es/profesionales/saludPublica/ccayes/alertasActual/nCov/vacunaCovid19.htm). For the moment this data is manually saved when updated.
+- [Vaccination data from Spain's Ministry of Health](https://www.mscbs.gob.es/profesionales/saludPublica/ccayes/alertasActual/nCov/vacunaCovid19.htm). For the moment this data is manually saved when updated.
 
 ## Scripts
 
@@ -25,7 +25,7 @@ The following Python scripts are included in the code to automate data retrieval
 
 ## Telegram bot
 
-You can access to some of the data also through the Telegram bot [@covid19_galicia_bot](https://t.me/covid19_galicia_bot). Keep in mind that the bot is executing in a Raspberry Pi so please keep in mind that it may not be running always.
+You can access to some of the data also through the Telegram bot [@covid19_galicia_bot](https://t.me/covid19_galicia_bot). Keep in mind that the bot is running in a Raspberry Pi at the moment so it may overload with too much queries.
 
 The following is a list of the available commands right now:
 
