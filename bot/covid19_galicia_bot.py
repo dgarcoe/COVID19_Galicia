@@ -7,6 +7,7 @@ import logging
 
 logger = telebot.logger
 telebot.logger.setLevel(logging.INFO)
+logging.basicConfig(filename='bot.log', level=logging.INFO)
 
 load_dotenv()
 
