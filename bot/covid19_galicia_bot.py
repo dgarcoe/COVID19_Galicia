@@ -7,7 +7,8 @@ import logging
 
 logger = telebot.logger
 telebot.logger.setLevel(logging.INFO)
-logging.basicConfig(filename='bot.log', level=logging.INFO)
+logging.basicConfig(filename='bot.log', level=logging.INFO,format='%(asctime)s %(levelname)s %(module)s : %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S')
 
 load_dotenv()
 
