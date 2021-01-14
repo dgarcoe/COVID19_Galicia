@@ -11,6 +11,7 @@ telebot.logger.setLevel(logging.INFO)
 load_dotenv()
 
 data = os.getenv('DATA_FILE')
+data_vac = os.getenv('DATA_VAC_FILE')
 token = os.getenv('TOKEN')
 
 emojis = {
@@ -27,7 +28,9 @@ emojis = {
     'death': '\U00002620',
     'hospital': '\U0001F6CC',
     'uci': '\U0001F6A8',
-    'total': '\U0001F4CA'
+    'total': '\U0001F4CA',
+    'truck': '\U0001F69A',
+    'vac': '\U0001F489'
 }
 
 commands = { 
@@ -36,7 +39,8 @@ commands = {
     'getIA'       : 'Devolve o estado actual da Incidencia Acumulada a 7 e 14 días en toda Galicia',
     'getHosp'     : 'Devolve o estado da ocupación hospitalaria no conxunto de Galicia ('+emojis["hospital"]+' hospitalizados, '+emojis["uci"]+' UCIs)',
     'getDate'     : 'Devolve a data na que se fixo a última actualización de datos',
-    'getAreas'    : 'Devolve os datos de cada área sanitaria no último dia ('+emojis["cured"]+' incremento curados, '+emojis["ill"]+' incremento casos, '+emojis["death"]+' incremento falecidos, '+emojis["hospital"]+' total hospitalizados, '+emojis["uci"]+' total UCIs)'
+    'getAreas'    : 'Devolve os datos de cada área sanitaria no último dia ('+emojis["cured"]+' incremento curados, '+emojis["ill"]+' incremento casos, '+emojis["death"]+' incremento falecidos, '+emojis["hospital"]+' total hospitalizados, '+emojis["uci"]+' total UCIs)',
+    'getVac'      : 'Devolve os datos da campaña de vacinación ('+emojis["truck"]+' doses repartidas, '+emojis["vac"]+'doses administradas)'
 }
 
 bot = telebot.TeleBot(token, parse_mode=None, threaded=False)
@@ -217,6 +221,21 @@ def response_areas():
 
     return area_text
 
+def response_vac():
+
+    df = pd.read_csv(data_vac)
+    vac_text =""
+
+    delivered = str(df["Dosis entregadas"].tail(1).values[0])
+    injected = str(df["Dosis administradas"].tail(1).values[0])
+
+    vac_text += "*Evolución da campaña de vacinación*\n\n"
+    vac_text += emojis["truck"]+delivered+"\n\n"
+    vac_text += emojis["vac"]+injected
+
+    return vac_text
+
+
 # start page
 @bot.message_handler(commands=['start'])
 def command_start(m):
@@ -270,6 +289,12 @@ def command_areas(m):
     cid = m.chat.id
     bot.send_message(cid, response_areas(),parse_mode="markdown")
 
+# Vaccination page
+@bot.message_handler(commands=['getVac'])
+def command_areas(m):
+    logger.info("/getVac command from "+str(m.from_user.id)+" "+m.from_user.first_name)
+    cid = m.chat.id
+    bot.send_message(cid, response_vac(),parse_mode="markdown")
 
 print('COVID-19 Galicia Telegram Bot started and waiting for messages!')
 bot.infinity_polling()
