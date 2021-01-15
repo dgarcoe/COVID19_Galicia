@@ -6,6 +6,8 @@ Estas estadísticas se actualizan con los valores recogidos el día anterior has
 
 {% include_relative  bars_new_cases_cured.html %}
 
+{% include_relative case_distribution_region.html %}
+
 {% include_relative  incidence_rate_galicia.html %}
 
 ### Nivel de riesgo por área sanitaria (IA 14)

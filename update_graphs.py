@@ -286,3 +286,45 @@ fig.update_layout(
     )
 
 fig.write_html("./docs/boxplot_new_cases_month_2020.html")
+
+#Plot distribution of cases by region
+
+death_values = [df["Total Fallecidos Vigo"].tail(1).values[0],
+               df["Total Fallecidos Santiago"].tail(1).values[0],
+               df["Total Fallecidos Pontevedra"].tail(1).values[0],
+               df["Total Fallecidos Ourense"].tail(1).values[0],
+               df["Total Fallecidos Lugo"].tail(1).values[0],
+               df["Total Fallecidos Ferrol"].tail(1).values[0],
+               df["Total Fallecidos A Coruna"].tail(1).values[0]]
+
+cured_values = [df["Total Altas Vigo"].tail(1).values[0],
+               df["Total Altas Santiago"].tail(1).values[0],
+               df["Total Altas Pontevedra"].tail(1).values[0],
+               df["Total Altas Ourense"].tail(1).values[0],
+               df["Total Altas Lugo"].tail(1).values[0],
+               df["Total Altas Ferrol"].tail(1).values[0],
+               df["Total Altas A Coruna"].tail(1).values[0]]
+
+active_values = [df["Total Casos Vigo"].tail(1).values[0]-death_values[0]-cured_values[0],
+               df["Total Casos Santiago"].tail(1).values[0]-death_values[1]-cured_values[1],
+               df["Total Casos Pontevedra"].tail(1).values[0]-death_values[2]-cured_values[2],
+               df["Total Casos Ourense"].tail(1).values[0]-death_values[3]-cured_values[3],
+               df["Total Casos Lugo"].tail(1).values[0]-death_values[4]-cured_values[4],
+               df["Total Casos Ferrol"].tail(1).values[0]-death_values[5]-cured_values[5],
+               df["Total Casos A Coruna"].tail(1).values[0]-death_values[6]-cured_values[6]]
+
+fig = go.Figure()
+
+fig.add_trace(go.Bar(x=death_values, y=["Vigo","Santiago","Pontevedra","Ourense","Lugo","Ferrol","A Coruña"], orientation='h', 
+                     name='Fallecidos', marker_color='indianred'))
+
+fig.add_trace(go.Bar(x=active_values, y=["Vigo","Santiago","Pontevedra","Ourense","Lugo","Ferrol","A Coruña"], orientation='h',
+                    name='Casos activos',marker_color='coral'))
+
+fig.add_trace(go.Bar(x=cured_values, y=["Vigo","Santiago","Pontevedra","Ourense","Lugo","Ferrol","A Coruña"], orientation='h',
+                    name='Curados',marker_color='forestgreen'))
+
+fig.update_layout( title="Reparto de estadísticas por área sanitaria",
+    xaxis_title="",
+    yaxis_title="",barmode='stack')
+fig.write_html('./docs/case_distribution_region.html')
