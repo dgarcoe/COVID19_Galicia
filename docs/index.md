@@ -20,6 +20,8 @@ Estas estadísticas se actualizan con los valores recogidos el día anterior has
 
 {% include_relative  vaccination_evolution_galicia.html %}
 
+{% include_relative  vaccination_distribution_by_company.html %}
+
 ## Estadísticas históricas
 
 Estas estadísticas contienen la evolución histórica de los indicadores.

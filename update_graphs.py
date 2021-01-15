@@ -154,7 +154,7 @@ fig = go.Figure()
 
 fig.add_trace(go.Indicator(
     mode = "number+gauge+delta",
-    gauge = {'shape': "bullet", 'axis': {'range': [None, 400]},
+    gauge = {'shape': "bullet", 'axis': {'range': [None, 600]},
              'threshold': {
                 'line': {'color': "red", 'width': 2},
                 'thickness': 0.75,
@@ -169,7 +169,7 @@ fig.add_trace(go.Indicator(
 
 fig.add_trace(go.Indicator(
     mode = "number+gauge+delta",
-    gauge = {'shape': "bullet", 'axis': {'range': [None, 400]},
+    gauge = {'shape': "bullet", 'axis': {'range': [None, 600]},
              'threshold': {
                 'line': {'color': "red", 'width': 2},
                 'thickness': 0.75,
@@ -197,6 +197,11 @@ fig.update_layout( title="Evolución de la vacunación en Galicia",
     yaxis_title="")
 
 fig.write_html("./docs/vaccination_evolution_galicia.html")
+
+fig = go.Figure([go.Bar(x=["Pfizer","Moderna"], y=[df_vac["Dosis entregadas Pfizer"].tail(1).values[0],df_vac["Dosis entregadas Moderna"].tail(1).values[0]])])
+fig.update_layout( title="Dosis entregadas de vacunas por empresa farmacéutica")
+
+fig.write_html("./docs/vaccination_distribution_by_company.html")
 
 #Plot incidence rate by region
 with open('Areas_sanitarias.geojson',encoding='utf-8') as f:
