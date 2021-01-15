@@ -16,6 +16,7 @@ df = pd.read_csv(data)
 df_vac = pd.read_csv(data_vac)
 
 df["Fecha"] = pd.to_datetime(df["Fecha"],format="%d/%m/%Y")
+df_vac["Fecha"] = pd.to_datetime(df_vac["Fecha"],format="%d/%m/%Y")
 
 df["Día semana"] = df["Fecha"].dt.day_name()
 df["Semana"] = df["Fecha"].dt.week
