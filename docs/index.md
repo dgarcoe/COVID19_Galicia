@@ -34,6 +34,8 @@ Estas estadísticas contienen la evolución histórica de los indicadores.
 
 {% include_relative historian_new_cases_galicia.html %}
 
+{% include_relative evolution_active_cases_region.html %}
+
 {% include_relative  evolution_hospital_occupation.html %}
 
 {% include_relative historian_active_cases_galicia.html %}

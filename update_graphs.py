@@ -5,6 +5,7 @@ import plotly.express as px
 import pandas as pd
 import geojson
 import locale
+from datetime import date
 
 locale.setlocale(locale.LC_ALL,'es_ES.UTF-8')
 
@@ -388,3 +389,33 @@ fig.update_layout( title="IA a 14 días por área sanitaria",
     yaxis_title="",yaxis2= dict(fixedrange= True,range= [0, 1],visible= False))
 
 fig.write_html('./docs/IA14_regions.html')
+
+#Plot case evolution by region
+fig = go.Figure()
+
+fig.add_trace(go.Scatter(x=df["Fecha"],y=(df["Total Casos A Coruna"]-df["Total Altas A Coruna"]-df["Total Fallecidos A Coruna"]),mode='lines',name="Casos activos A Coruña"))
+fig.add_trace(go.Scatter(x=df["Fecha"],y=(df["Total Casos Ferrol"]-df["Total Altas Ferrol"]-df["Total Fallecidos Ferrol"]),mode='lines',name="Casos activos Ferrol"))
+fig.add_trace(go.Scatter(x=df["Fecha"],y=(df["Total Casos Lugo"]-df["Total Altas Lugo"]-df["Total Fallecidos Lugo"]),mode='lines',name="Casos activos Lugo"))
+fig.add_trace(go.Scatter(x=df["Fecha"],y=(df["Total Casos Ourense"]-df["Total Altas Ourense"]-df["Total Fallecidos Ourense"]),mode='lines',name="Casos activos Ourense"))
+fig.add_trace(go.Scatter(x=df["Fecha"],y=(df["Total Casos Pontevedra"]-df["Total Altas Pontevedra"]-df["Total Fallecidos Pontevedra"]),mode='lines',name="Casos activos Pontevedra"))
+fig.add_trace(go.Scatter(x=df["Fecha"],y=(df["Total Casos Santiago"]-df["Total Altas Santiago"]-df["Total Fallecidos Santiago"]),mode='lines',name="Casos activos Santiago"))
+fig.add_trace(go.Scatter(x=df["Fecha"],y=(df["Total Casos Vigo"]-df["Total Altas Vigo"]-df["Total Fallecidos Vigo"]),mode='lines',name="Casos activos Vigo"))
+
+fig.update_layout( title="Evolución de casos activos por área sanitaria",
+    xaxis_title="",
+    yaxis_title="")
+
+fig.update_xaxes(range=["2020-06-04", date.today()])
+
+fig.update_xaxes(
+    rangeselector=dict(
+        buttons=list([
+            dict(count=1, label="1m", step="month", stepmode="backward"),
+            dict(count=6, label="6m", step="month", stepmode="backward"),
+            dict(count=1, label="1y", step="year", stepmode="backward"),
+            dict(step="all")
+        ])
+    )
+)
+
+fig.write_html("./docs/evolution_active_cases_region.html")
