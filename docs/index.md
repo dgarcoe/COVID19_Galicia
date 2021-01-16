@@ -10,13 +10,17 @@ Estas estadísticas se actualizan con los valores recogidos el día anterior has
 
 {% include_relative  incidence_rate_galicia.html %}
 
+### Nivel de riesgo por área sanitaria (IA 7)
+
+{% include_relative  risk_region_IA7.html %}
+
+{% include_relative  IA7_regions.html %}
+
 ### Nivel de riesgo por área sanitaria (IA 14)
 
 {% include_relative  risk_region_IA14.html %}
 
-### Nivel de riesgo por área sanitaria (IA 7)
-
-{% include_relative  risk_region_IA7.html %}
+{% include_relative  IA14_regions.html %}
 
 ## Estadísticas de vacunación
 

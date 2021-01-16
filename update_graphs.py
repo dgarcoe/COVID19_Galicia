@@ -1,4 +1,5 @@
 from plotly.offline import init_notebook_mode, iplot
+from plotly.subplots import make_subplots
 import plotly.graph_objects as go
 import plotly.express as px
 import pandas as pd
@@ -198,7 +199,7 @@ fig.update_layout( title="Evolución de la vacunación en Galicia",
 
 fig.write_html("./docs/vaccination_evolution_galicia.html")
 
-fig = go.Figure([go.Bar(x=["Pfizer","Moderna"], y=[df_vac["Dosis entregadas Pfizer"].tail(1).values[0],df_vac["Dosis entregadas Moderna"].tail(1).values[0]])])
+fig = go.Figure([go.Bar(y=["Pfizer","Moderna"], x=[df_vac["Dosis entregadas Pfizer"].tail(1).values[0],df_vac["Dosis entregadas Moderna"].tail(1).values[0]], orientation='h')])
 fig.update_layout( title="Dosis entregadas de vacunas por empresa farmacéutica")
 
 fig.write_html("./docs/vaccination_distribution_by_company.html")
@@ -328,3 +329,62 @@ fig.update_layout( title="Reparto de estadísticas por área sanitaria",
     xaxis_title="",
     yaxis_title="",barmode='stack')
 fig.write_html('./docs/case_distribution_region.html')
+
+#Plot IA 7 by region
+fig = go.Figure()
+
+data = [df["IA 7 Vigo"].tail(1).values[0],df["IA 7 Santiago"].tail(1).values[0],df["IA 7 Pontevedra"].tail(1).values[0],
+       df["IA 7 Ourense"].tail(1).values[0],df["IA 7 Lugo"].tail(1).values[0],df["IA 7 Ferrol"].tail(1).values[0],
+       df["IA 7 Coruna"].tail(1).values[0]]
+
+fig = make_subplots(specs=[[{"secondary_y": True}]], print_grid=False)
+
+fig.add_trace(go.Bar(x=data, y=["Vigo","Santiago","Pontevedra","Ourense","Lugo","Ferrol","A Coruña"], orientation='h',
+                     marker_color='darkblue',showlegend= False),secondary_y=False)
+fig.add_trace(go.Scatter(y= [0, 1],
+                  x= [125, 125],
+                  mode= 'lines',
+                  showlegend= False,
+                  hoverinfo='none',marker_color='indianred'),secondary_y=True)
+
+fig.add_trace(go.Scatter(y= [0, 1],
+                  x= [10, 10],
+                  mode= 'lines',
+                  showlegend= False,
+                  hoverinfo='none',marker_color='lightgreen'),secondary_y=True)
+
+fig.update_layout( title="IA a 7 días por área sanitaria",
+    xaxis_title="",
+    yaxis_title="",yaxis2= dict(fixedrange= True,range= [0, 1],visible= False))
+
+fig.write_html("./docs/IA7_regions.html")
+
+
+#Plot IA 14 by regions
+fig = go.Figure()
+
+data = [df["IA 14 Vigo"].tail(1).values[0],df["IA 14 Santiago"].tail(1).values[0],df["IA 14 Pontevedra"].tail(1).values[0],
+       df["IA 14 Ourense"].tail(1).values[0],df["IA 14 Lugo"].tail(1).values[0],df["IA 14 Ferrol"].tail(1).values[0],
+       df["IA 14 Coruna"].tail(1).values[0]]
+
+fig = make_subplots(specs=[[{"secondary_y": True}]], print_grid=False)
+
+fig.add_trace(go.Bar(x=data, y=["Vigo","Santiago","Pontevedra","Ourense","Lugo","Ferrol","A Coruña"], orientation='h',
+                     marker_color='darkblue',showlegend= False),secondary_y=False)
+fig.add_trace(go.Scatter(y= [0, 1],
+                  x= [250, 250],
+                  mode= 'lines',
+                  showlegend= False,
+                  hoverinfo='none',marker_color='indianred'),secondary_y=True)
+
+fig.add_trace(go.Scatter(y= [0, 1],
+                  x= [25, 25],
+                  mode= 'lines',
+                  showlegend= False,
+                  hoverinfo='none',marker_color='lightgreen'),secondary_y=True)
+
+fig.update_layout( title="IA a 14 días por área sanitaria",
+    xaxis_title="",
+    yaxis_title="",yaxis2= dict(fixedrange= True,range= [0, 1],visible= False))
+
+fig.write_html('./docs/IA14_regions.html')
