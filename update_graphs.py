@@ -89,6 +89,17 @@ data = go.Scatter(x=df["Fecha"],y=df["Nuevos casos"],mode='lines',name="Evoluci�
 
 fig = go.Figure(data,layout)
 
+fig.update_xaxes(
+    rangeselector=dict(
+        buttons=list([
+            dict(count=1, label="1m", step="month", stepmode="backward"),
+            dict(count=6, label="6m", step="month", stepmode="backward"),
+            dict(count=1, label="1y", step="year", stepmode="backward"),
+            dict(step="all")
+        ])
+    )
+)
+
 fig.write_html("./docs/historian_new_cases_galicia.html")
 
 
@@ -98,6 +109,17 @@ data = go.Scatter(x=df["Fecha"],y=df["Total casos"]-df["Total altas"]-df['Total 
 
 fig = go.Figure(data,layout)
 
+fig.update_xaxes(
+    rangeselector=dict(
+        buttons=list([
+            dict(count=1, label="1m", step="month", stepmode="backward"),
+            dict(count=6, label="6m", step="month", stepmode="backward"),
+            dict(count=1, label="1y", step="year", stepmode="backward"),
+            dict(step="all")
+        ])
+    )
+)
+
 fig.write_html("./docs/historian_active_cases_galicia.html")
 
 #Plot evolution of letality rate
@@ -105,6 +127,17 @@ layout=go.Layout(title = 'Evolución de la tasa de letalidad en Galicia (%)')
 data = go.Scatter(x=df["Fecha"],y=df["Tasa de letalidad"],mode='lines',name="Evolución de la tasa de letalidad")
 
 fig = go.Figure(data,layout)
+
+fig.update_xaxes(
+    rangeselector=dict(
+        buttons=list([
+            dict(count=1, label="1m", step="month", stepmode="backward"),
+            dict(count=6, label="6m", step="month", stepmode="backward"),
+            dict(count=1, label="1y", step="year", stepmode="backward"),
+            dict(step="all")
+        ])
+    )
+)
 
 fig.write_html("./docs/letality_rate_evolution.html")
 
@@ -148,6 +181,17 @@ fig.add_trace(go.Scatter(x=df["Fecha"],y=df["UCI"],mode='lines',name="UCI",fill=
 fig.update_layout( title="Evolución de la ocupación hospitalaria",
     xaxis_title="",
     yaxis_title="")
+
+fig.update_xaxes(
+    rangeselector=dict(
+        buttons=list([
+            dict(count=1, label="1m", step="month", stepmode="backward"),
+            dict(count=6, label="6m", step="month", stepmode="backward"),
+            dict(count=1, label="1y", step="year", stepmode="backward"),
+            dict(step="all")
+        ])
+    )
+)
 
 fig.write_html("./docs/evolution_hospital_occupation.html")
 
