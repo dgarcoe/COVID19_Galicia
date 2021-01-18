@@ -32,7 +32,8 @@ emojis = {
     'uci': '\U0001F6A8',
     'total': '\U0001F4CA',
     'truck': '\U0001F69A',
-    'vac': '\U0001F489'
+    'vac': '\U0001F489',
+    'def': '\U0001F6E1'
 }
 
 commands = { 
@@ -42,7 +43,7 @@ commands = {
     'getHosp'     : 'Devolve o estado da ocupación hospitalaria no conxunto de Galicia ('+emojis["hospital"]+' hospitalizados, '+emojis["uci"]+' UCIs)',
     'getDate'     : 'Devolve a data na que se fixo a última actualización de datos',
     'getAreas'    : 'Devolve os datos de cada área sanitaria no último dia ('+emojis["cured"]+' incremento curados, '+emojis["ill"]+' incremento casos, '+emojis["death"]+' incremento falecidos, '+emojis["hospital"]+' total hospitalizados, '+emojis["uci"]+' total UCIs)',
-    'getVac'      : 'Devolve os datos da campaña de vacinación ('+emojis["truck"]+' doses repartidas, '+emojis["vac"]+'doses administradas)'
+    'getVac'      : 'Devolve os datos da campaña de vacinación ('+emojis["truck"]+' doses repartidas, '+emojis["vac"]+'doses administradas, '+emojis["def"]+'persoas vacinadas)'
 }
 
 bot = telebot.TeleBot(token, parse_mode=None, threaded=False)
@@ -230,10 +231,12 @@ def response_vac():
 
     delivered = str(df["Dosis entregadas"].tail(1).values[0])
     injected = str(df["Dosis administradas"].tail(1).values[0])
+    immune = str(df["Personas vacunadas"].tail(1).values[0])
 
     vac_text += "*Evolución da campaña de vacinación*\n\n"
     vac_text += emojis["truck"]+delivered+"\n\n"
-    vac_text += emojis["vac"]+injected
+    vac_text += emojis["vac"]+injected+"\n\n"
+    vac_text += emojis["def"]+immune
 
     return vac_text
 
