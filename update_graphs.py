@@ -235,6 +235,29 @@ fig.write_html("./docs/incidence_rate_galicia.html")
 #Plot vaccination data
 fig = go.Figure()
 
+fig.add_trace(go.Indicator(
+    mode = "number+delta",
+    value = df_vac["Personas vacunadas"].tail(1).values[0],
+    domain = {'x': [0, 0.5], 'y': [0, 1]},
+    delta = {'reference': df_vac["Personas vacunadas"].tail(2).values[0], 'position' : "bottom",'valueformat':'f',
+            'increasing':{'color':'green'}},
+    number = {'valueformat':'f'},
+    title = "Total de personas vacunadas"))
+
+fig.add_trace(go.Indicator(
+    mode = "number+delta",
+    value = df_vac["Personas vacunadas"].tail(1).values[0]/df["Poblacion Galicia"].tail(1).values[0],
+    domain = {'x': [0.5, 1], 'y': [0, 1]},
+    delta = {'reference': df_vac["Personas vacunadas"].tail(2).values[0]/df["Poblacion Galicia"].tail(2).values[0], 
+             'position' : "bottom",'valueformat':'.2%',
+            'increasing':{'color':'green'}},
+    number = {'valueformat':'.2%'},
+    title = "Porcentaje de población vacunada"))
+
+fig.write_html("./docs/total_vaccinated.html")
+
+fig = go.Figure()
+
 fig.add_trace(go.Scatter(x=df_vac["Fecha"],y=df_vac["Dosis entregadas"],mode='lines',name="Dosis entregadas",fill='tonexty'))
 fig.add_trace(go.Scatter(x=df_vac["Fecha"],y=df_vac["Dosis administradas"],mode='lines',name="Dosis administradas",fill='tozeroy',marker_color='lightgreen'))
 

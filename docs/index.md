@@ -23,6 +23,7 @@ Estas estadísticas se actualizan con los valores recogidos el día anterior has
 {% include_relative  IA14_regions.html %}
 
 ## Estadísticas de vacunación
+{% include_relative  total_vaccinated.html %}
 
 {% include_relative  vaccination_evolution_galicia.html %}
 
