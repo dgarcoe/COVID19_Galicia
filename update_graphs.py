@@ -258,8 +258,9 @@ fig.write_html("./docs/total_vaccinated.html")
 
 fig = go.Figure()
 
-fig.add_trace(go.Scatter(x=df_vac["Fecha"],y=df_vac["Dosis entregadas"],mode='lines',name="Dosis entregadas",fill='tonexty'))
-fig.add_trace(go.Scatter(x=df_vac["Fecha"],y=df_vac["Dosis administradas"],mode='lines',name="Dosis administradas",fill='tozeroy',marker_color='lightgreen'))
+fig.add_trace(go.Scatter(x=df_vac["Fecha"],y=df_vac["Personas vacunadas"],mode='lines',name="Personas vacunadas",marker_color='forestgreen',fill='tozeroy'))
+fig.add_trace(go.Scatter(x=df_vac["Fecha"],y=df_vac["Dosis administradas"],mode='lines',name="Dosis administradas",marker_color='lightgreen',fill='tonexty'))
+fig.add_trace(go.Scatter(x=df_vac["Fecha"],y=df_vac["Dosis entregadas"],mode='lines',name="Dosis entregadas",marker_color='dodgerblue',fill='tonexty'))
 
 fig.update_layout( title="Evolución de la vacunación en Galicia",
     xaxis_title="",
