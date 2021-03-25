@@ -152,7 +152,7 @@ df_new_row = pd.DataFrame([[new_days, today.strftime("%d/%m/%Y"), new_total_case
                            new_total_pcr_ourense, new_IA_14_ourense, new_IA_7_ourense,
                             new_total_cases_ponte, new_total_recovered_ponte, new_total_deaths_ponte,
                            new_total_in_hospital_ponte, new_total_intensive_care_ponte, new_total_pcr_ponte, 
-                            new_IA_14_ponte, new_IA_7_sant, new_total_cases_sant,
+                            new_IA_14_ponte, new_IA_7_ponte, new_total_cases_sant,
                            new_total_recovered_sant, new_total_deaths_sant, new_total_in_hospital_sant, new_total_intensive_care_sant,
                            new_total_pcr_sant, new_IA_14_sant, new_IA_7_sant,
                             new_total_cases_vigo, new_total_recovered_vigo, new_total_deaths_vigo,
