@@ -12,6 +12,10 @@ locale.setlocale(locale.LC_ALL,'es_ES.UTF-8')
 data_vac = './data_galicia_vaccination.csv'
 df_vac = pd.read_csv(data_vac)
 
+data = './data_galicia_covid.csv'
+df = pd.read_csv(data)
+
+
 df_vac["Fecha"] = pd.to_datetime(df_vac["Fecha"],format="%d/%m/%Y")
 
 #Plot vaccination data
