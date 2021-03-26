@@ -12,13 +12,10 @@ locale.setlocale(locale.LC_ALL,'es_ES.UTF-8')
 
 #Read datasets
 data = './data_galicia_covid.csv'
-data_vac = './data_galicia_vaccination.csv'
 
 df = pd.read_csv(data)
-df_vac = pd.read_csv(data_vac)
 
 df["Fecha"] = pd.to_datetime(df["Fecha"],format="%d/%m/%Y")
-df_vac["Fecha"] = pd.to_datetime(df_vac["Fecha"],format="%d/%m/%Y")
 
 df["Día semana"] = df["Fecha"].dt.day_name()
 df["Semana"] = df["Fecha"].dt.week
@@ -232,47 +229,6 @@ fig.update_layout( title="Incidencia Acumulada en Galicia")
 
 fig.write_html("./docs/incidence_rate_galicia.html")
 
-#Plot vaccination data
-fig = go.Figure()
-
-fig.add_trace(go.Indicator(
-    mode = "number+delta",
-    value = df_vac["Personas vacunadas"].tail(1).values[0],
-    domain = {'x': [0, 0.5], 'y': [0, 1]},
-    delta = {'reference': df_vac["Personas vacunadas"].tail(2).values[0], 'position' : "bottom",'valueformat':'f',
-            'increasing':{'color':'green'}},
-    number = {'valueformat':'f'},
-    title = "Total de personas vacunadas"))
-
-fig.add_trace(go.Indicator(
-    mode = "number+delta",
-    value = df_vac["Personas vacunadas"].tail(1).values[0]/df["Poblacion Galicia"].tail(1).values[0],
-    domain = {'x': [0.5, 1], 'y': [0, 1]},
-    delta = {'reference': df_vac["Personas vacunadas"].tail(2).values[0]/df["Poblacion Galicia"].tail(2).values[0], 
-             'position' : "bottom",'valueformat':'.2%',
-            'increasing':{'color':'green'}},
-    number = {'valueformat':'.2%'},
-    title = "Porcentaje de población vacunada"))
-
-fig.write_html("./docs/total_vaccinated.html")
-
-fig = go.Figure()
-
-fig.add_trace(go.Scatter(x=df_vac["Fecha"],y=df_vac["Personas vacunadas"],mode='lines',name="Personas vacunadas",marker_color='forestgreen',fill='tozeroy'))
-fig.add_trace(go.Scatter(x=df_vac["Fecha"],y=df_vac["Dosis administradas"],mode='lines',name="Dosis administradas",marker_color='lightgreen',fill='tonexty'))
-fig.add_trace(go.Scatter(x=df_vac["Fecha"],y=df_vac["Dosis entregadas"],mode='lines',name="Dosis entregadas",marker_color='dodgerblue',fill='tonexty'))
-
-fig.update_layout( title="Evolución de la vacunación en Galicia",
-    xaxis_title="",
-    yaxis_title="")
-
-fig.write_html("./docs/vaccination_evolution_galicia.html")
-
-fig = go.Figure([go.Bar(y=["Pfizer","AstraZeneca","Moderna"], x=[df_vac["Dosis entregadas Pfizer"].tail(1).values[0],df_vac["Dosis entregadas AstraZeneca"].tail(1).values[0],df_vac["Dosis entregadas Moderna"].tail(1).values[0]], orientation='h')])
-fig.update_layout( title="Dosis entregadas de vacunas por empresa farmacéutica")
-
-fig.write_html("./docs/vaccination_distribution_by_company.html")
-
 #Plot incidence rate by region
 with open('Areas_sanitarias.geojson',encoding='utf-8') as f:
     gj_regions = geojson.load(f)
@@ -385,7 +341,7 @@ active_values = [df["Total Casos Vigo"].tail(1).values[0]-death_values[0]-cured_
 
 fig = go.Figure()
 
-fig.add_trace(go.Bar(x=death_values, y=["Vigo","Santiago","Pontevedra","Ourense","Lugo","Ferrol","A Coruña"], orientation='h', 
+fig.add_trace(go.Bar(x=death_values, y=["Vigo","Santiago","Pontevedra","Ourense","Lugo","Ferrol","A Coruña"], orientation='h',
                      name='Fallecidos', marker_color='indianred'))
 
 fig.add_trace(go.Bar(x=active_values, y=["Vigo","Santiago","Pontevedra","Ourense","Lugo","Ferrol","A Coruña"], orientation='h',
