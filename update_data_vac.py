@@ -33,9 +33,10 @@ new_adm = galicia_vac.loc["Dosis administradas (2)"]
 new_pfizer = galicia_vac.loc["Dosis entregadas Pfizer (1)"]
 new_moderna = galicia_vac.loc["Dosis entregadas Moderna (1)"]
 new_astra = galicia_vac.loc["Dosis entregadas AstraZeneca (1)"]
+new_jan = galicia_vac.loc["Dosis entregadas Janssen (1)"]
 new_tot_vac = galicia_vac.loc["Nº Personas vacunadas(pauta completada)"]
 
-df_new_row = pd.DataFrame([[new_date,new_delivered,new_adm,new_pfizer,new_moderna,new_astra,new_tot_vac]],columns=df.keys())
+df_new_row = pd.DataFrame([[new_date,new_delivered,new_adm,new_pfizer,new_moderna,new_astra,new_jan,new_tot_vac]],columns=df.keys())
 
 
 df = df.append(df_new_row)

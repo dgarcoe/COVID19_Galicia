@@ -54,7 +54,7 @@ fig.update_layout( title="Evolución de la vacunación en Galicia",
 
 fig.write_html("./docs/vaccination_evolution_galicia.html")
 
-fig = go.Figure([go.Bar(y=["Pfizer","AstraZeneca","Moderna"], x=[df_vac["Dosis entregadas Pfizer"].tail(1).values[0],df_vac["Dosis entregadas AstraZeneca"].tail(1).values[0],df_vac["Dosis entregadas Moderna"].tail(1).values[0]], orientation='h')])
+fig = go.Figure([go.Bar(y=["Pfizer","AstraZeneca","Moderna","Janssen"], x=[df_vac["Dosis entregadas Pfizer"].tail(1).values[0],df_vac["Dosis entregadas AstraZeneca"].tail(1).values[0],df_vac["Dosis entregadas Moderna"].tail(1).values[0],df_vac["Dosis entregadas Janssen"].tail(1).values[0]], orientation='h')])
 fig.update_layout( title="Dosis entregadas de vacunas por empresa farmacéutica")
 
 fig.write_html("./docs/vaccination_distribution_by_company.html")
