@@ -14,7 +14,7 @@ yesterday = today-timedelta(days=1)
 
 print('Beginning files download')
 
-url = 'https://coronavirus.sergas.gal/infodatos/'+str(yesterday)+'_COVID19_Web_CifrasTotais.csv'
+url = 'https://coronavirus.sergas.gal/infodatos/'+str(yesterday)+'_COVID19_Web_CifrasTotais_PDIA.csv'
 filename = './'+str(today)+'_Total.csv'
 r = requests.get(url)
 with open(filename, 'wb') as f:
@@ -38,7 +38,7 @@ df_day_galicia = df_day[df_day['Area_Sanitaria']=='GALICIA']
 new_total_cases = df_day_galicia['Casos_Totais'].values[0]
 new_total_recovered = df_day_galicia['Pacientes_Con_Alta'].values[0]
 new_total_deaths = df_day_galicia['Exitus'].values[0]
-new_pcr = df_day_galicia['Casos_Confirmados_PCR_Ultimas24h'].values[0]
+new_pcr = df_day_galicia['Casos_Confirmados_PDIA_Ultimas24h'].values[0]
 new_cases = new_total_cases-df['Total casos'].tail(1).values[0]
 new_deaths = new_total_deaths-df['Total fallecidos'].tail(1).values[0]
 new_letality_rate = new_total_deaths*100/new_total_cases
