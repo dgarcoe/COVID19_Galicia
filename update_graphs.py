@@ -102,7 +102,7 @@ fig.write_html("./docs/historian_new_cases_galicia.html")
 
 #Plot evolution of active cases
 layout=go.Layout(title = 'Evolución de casos activos en Galicia')
-data = go.Scatter(x=df["Fecha"],y=df["Total casos"]-df["Total altas"]-df['Total fallecidos'],mode='lines',name="Evolución de casos activos")
+data = go.Scatter(x=df["Fecha"],y=df["Total casos"]-df["Total altas"],mode='lines',name="Evolución de casos activos")
 
 fig = go.Figure(data,layout)
 
@@ -331,13 +331,13 @@ cured_values = [df["Total Altas Vigo"].tail(1).values[0],
                df["Total Altas Ferrol"].tail(1).values[0],
                df["Total Altas A Coruna"].tail(1).values[0]]
 
-active_values = [df["Total Casos Vigo"].tail(1).values[0]-death_values[0]-cured_values[0],
-               df["Total Casos Santiago"].tail(1).values[0]-death_values[1]-cured_values[1],
-               df["Total Casos Pontevedra"].tail(1).values[0]-death_values[2]-cured_values[2],
-               df["Total Casos Ourense"].tail(1).values[0]-death_values[3]-cured_values[3],
-               df["Total Casos Lugo"].tail(1).values[0]-death_values[4]-cured_values[4],
-               df["Total Casos Ferrol"].tail(1).values[0]-death_values[5]-cured_values[5],
-               df["Total Casos A Coruna"].tail(1).values[0]-death_values[6]-cured_values[6]]
+active_values = [df["Total Casos Vigo"].tail(1).values[0]-cured_values[0],
+               df["Total Casos Santiago"].tail(1).values[0]-cured_values[1],
+               df["Total Casos Pontevedra"].tail(1).values[0]-cured_values[2],
+               df["Total Casos Ourense"].tail(1).values[0]-cured_values[3],
+               df["Total Casos Lugo"].tail(1).values[0]-cured_values[4],
+               df["Total Casos Ferrol"].tail(1).values[0]-cured_values[5],
+               df["Total Casos A Coruna"].tail(1).values[0]-cured_values[6]]
 
 fig = go.Figure()
 
@@ -417,13 +417,13 @@ fig.write_html('./docs/IA14_regions.html')
 #Plot case evolution by region
 fig = go.Figure()
 
-fig.add_trace(go.Scatter(x=df["Fecha"],y=(df["Total Casos A Coruna"]-df["Total Altas A Coruna"]-df["Total Fallecidos A Coruna"]),mode='lines',name="Casos activos A Coruña"))
-fig.add_trace(go.Scatter(x=df["Fecha"],y=(df["Total Casos Ferrol"]-df["Total Altas Ferrol"]-df["Total Fallecidos Ferrol"]),mode='lines',name="Casos activos Ferrol"))
-fig.add_trace(go.Scatter(x=df["Fecha"],y=(df["Total Casos Lugo"]-df["Total Altas Lugo"]-df["Total Fallecidos Lugo"]),mode='lines',name="Casos activos Lugo"))
-fig.add_trace(go.Scatter(x=df["Fecha"],y=(df["Total Casos Ourense"]-df["Total Altas Ourense"]-df["Total Fallecidos Ourense"]),mode='lines',name="Casos activos Ourense"))
-fig.add_trace(go.Scatter(x=df["Fecha"],y=(df["Total Casos Pontevedra"]-df["Total Altas Pontevedra"]-df["Total Fallecidos Pontevedra"]),mode='lines',name="Casos activos Pontevedra"))
-fig.add_trace(go.Scatter(x=df["Fecha"],y=(df["Total Casos Santiago"]-df["Total Altas Santiago"]-df["Total Fallecidos Santiago"]),mode='lines',name="Casos activos Santiago"))
-fig.add_trace(go.Scatter(x=df["Fecha"],y=(df["Total Casos Vigo"]-df["Total Altas Vigo"]-df["Total Fallecidos Vigo"]),mode='lines',name="Casos activos Vigo"))
+fig.add_trace(go.Scatter(x=df["Fecha"],y=(df["Total Casos A Coruna"]-df["Total Altas A Coruna"]),mode='lines',name="Casos activos A Coruña"))
+fig.add_trace(go.Scatter(x=df["Fecha"],y=(df["Total Casos Ferrol"]-df["Total Altas Ferrol"]),mode='lines',name="Casos activos Ferrol"))
+fig.add_trace(go.Scatter(x=df["Fecha"],y=(df["Total Casos Lugo"]-df["Total Altas Lugo"]),mode='lines',name="Casos activos Lugo"))
+fig.add_trace(go.Scatter(x=df["Fecha"],y=(df["Total Casos Ourense"]-df["Total Altas Ourense"]),mode='lines',name="Casos activos Ourense"))
+fig.add_trace(go.Scatter(x=df["Fecha"],y=(df["Total Casos Pontevedra"]-df["Total Altas Pontevedra"]),mode='lines',name="Casos activos Pontevedra"))
+fig.add_trace(go.Scatter(x=df["Fecha"],y=(df["Total Casos Santiago"]-df["Total Altas Santiago"]),mode='lines',name="Casos activos Santiago"))
+fig.add_trace(go.Scatter(x=df["Fecha"],y=(df["Total Casos Vigo"]-df["Total Altas Vigo"]),mode='lines',name="Casos activos Vigo"))
 
 fig.update_layout( title="Evolución de casos activos por área sanitaria",
     xaxis_title="",
