@@ -35,7 +35,7 @@ fig.add_trace(go.Indicator(
 
 fig.add_trace(go.Indicator(
     mode = "number+delta",
-    value = df["Total casos"].tail(1).values[0]-df["Total altas"].tail(1).values[0]-df["Total fallecidos"].tail(1).values[0],
+    value = df["Total casos"].tail(1).values[0]-df["Total altas"].tail(1).values[0],
     domain = {'x': [0.5, 1], 'y': [0.75, 1]},
     delta = {'reference': df["Total casos"].tail(2).values[0]-df["Total altas"].tail(2).values[0]-df["Total fallecidos"].tail(2).values[0], 'position' : "bottom",'valueformat':'f',
             'increasing':{'color':'red'},'decreasing':{'color':'green'}},
