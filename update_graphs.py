@@ -243,11 +243,11 @@ data = [["A Coruña y Cee",df["IA 14 Coruna"].tail(1).values[0],df["IA 7 Coruna"
 
 df_areas = pd.DataFrame(data,columns=['Area','IA 14','IA 7'])
 
-df_areas["Riesgo IA 14"] = pd.cut(x=df_areas["IA 14"],bins = [0,25,50,150,250,2000],
+df_areas["Riesgo IA 14"] = pd.cut(x=df_areas["IA 14"],bins = [0,25,50,150,250,4000],
                                   labels=['Normal','Bajo','Medio','Alto','Extremo'])
 
 
-df_areas["Riesgo IA 7"] = pd.cut(x=df_areas["IA 7"],bins = [0,10,25,75,125,1000],
+df_areas["Riesgo IA 7"] = pd.cut(x=df_areas["IA 7"],bins = [0,10,25,75,125,4000],
                                   labels=['Normal','Bajo','Medio','Alto','Extremo'])
 
 colour_discrete_scale = {'Normal':'lightgreen','Bajo':'khaki','Medio':'orange','Alto':'orangered','Extremo':'darkred'}
