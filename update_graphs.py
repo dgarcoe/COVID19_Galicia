@@ -314,6 +314,38 @@ fig.update_layout(
 
 fig.write_html("./docs/boxplot_new_cases_month_2020.html")
 
+#Plot 2021 heatmap of new cases
+df_year = df[df['Fecha'].dt.year == 2021]
+
+order_heatmap = ['Sunday','Saturday','Friday','Thursday','Wednesday','Tuesday','Monday']
+
+fig = go.Figure(data=go.Heatmap(
+        z=df_year["Nuevos casos"],
+        x=df_year["Semana"],
+        y=df_year["Día semana"],
+        colorscale='YlOrRd',hoverongaps = False))
+
+fig.update_layout(
+    title='Nuevos casos por semana y día de la semana',
+    yaxis={'categoryarray':order_heatmap,'showgrid':False},
+    xaxis={'showgrid':False},
+    xaxis_title="Semana",
+    yaxis_title="Día dela semana")
+
+fig.write_html("./docs/heatmap_new_cases_2021.html")
+
+#Plot 2021 boxplot of new cases
+order_boxplot = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
+
+fig = go.Figure()
+fig.add_trace(go.Box(y=df_year["Nuevos casos"],x=df_year["Mes"],boxmean=True,fillcolor='rgba(255, 65, 54, 0.5)'))
+fig.update_layout(
+    title='Distribución de nuevos casos por mes',
+    xaxis={'categoryarray':order_boxplot},
+    )
+
+fig.write_html("./docs/boxplot_new_cases_month_2021.html")
+
 #Plot distribution of cases by region
 
 death_values = [df["Total Fallecidos Vigo"].tail(1).values[0],

@@ -48,3 +48,9 @@ Estas estadísticas contienen la evolución histórica de los indicadores.
 {% include_relative heatmap_new_cases_2020.html %}
 
 {% include_relative  boxplot_new_cases_month_2020.html %}
+
+## Análisis del año 2021
+
+{% include_relative heatmap_new_cases_2021.html %}
+
+{% include_relative  boxplot_new_cases_month_2021.html %}
