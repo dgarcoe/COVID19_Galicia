@@ -14,8 +14,9 @@ yesterday = today-timedelta(days=1)
 
 print('Beginning files download')
 
-url = 'https://coronavirus.sergas.gal/infodatos/'+str(yesterday)+'_COVID19_Web_CifrasTotais_PDIA.csv'
+url = 'https://coronavirus.sergas.gal/infodatos/'+str(today)+'_COVID19_Web_CifrasTotais_PDIA.csv'
 filename = './'+str(today)+'_Total.csv'
+print(url)
 r = requests.get(url)
 with open(filename, 'wb') as f:
     f.write(r.content)
