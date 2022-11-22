@@ -254,33 +254,34 @@ colour_discrete_scale = {'Normal':'lightgreen','Bajo':'khaki','Medio':'orange','
 categories = {'Riesgo IA 14': ['Extremo','Alto','Medio','Normal','Bajo']}
 
 
-fig = px.choropleth_mapbox(df_areas, geojson=gj_regions, locations='Area', featureidkey='properties.nom_area',
-                           color='Riesgo IA 14',
-                           color_discrete_map=colour_discrete_scale,
-                           category_orders=categories,
-                           mapbox_style="white-bg",
-                           zoom=7.1, height = 800, center = {"lat": 42.789886, "lon": -8.003869},
-                           opacity=1,
-                           hover_name='Area',
-                           hover_data={"Area":False,"Riesgo IA 14":False,"IA 14":True}
-                          )
-fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+#fig = px.choropleth_mapbox(df_areas, geojson=gj_regions, locations='Area', featureidkey='properties.nom_area',
+#                           color='Riesgo IA 14',#
+#                           color_discrete_map=colo#ur_discrete_scale,
+#                           category_orders=categorie#s,
+#                           mapbox_style="white-bg",
+#                           zoom=7.1, height = 800, center = {"lat": 42.789886, "lon": -8.003869},
+#                           opacity=1,
+#                           hover_name='Area',
+#                           hover_data={"Area":False,"Riesgo IA 14":False,"IA 14":True}
+#                          )
 
-fig.write_html("./docs/risk_region_IA14.html")
+#fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 
-fig = px.choropleth_mapbox(df_areas, geojson=gj_regions, locations='Area', featureidkey='properties.nom_area',
-                           color='Riesgo IA 7',
-                           color_discrete_map=colour_discrete_scale,
-                           category_orders=categories,
-                           mapbox_style="white-bg",
-                           zoom=7.1, height = 600, center = {"lat": 42.789886, "lon": -8.003869},
-                           opacity=1,
-			   hover_name='Area',
-			   hover_data={"Area":False,"Riesgo IA 7":False,"IA 7":True}
-                          )
-fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+#fig.write_html("./docs/risk_region_IA14.html")
 
-fig.write_html("./docs/risk_region_IA7.html")
+#fig = px.choropleth_mapbox(df_areas, geojson=gj_regions, locations='Area', featureidkey='properties.nom_area',
+#                           color='Riesgo IA 7',
+#                           color_discrete_map=colour_discrete_scale,
+#                           category_orders=categories,
+#                           mapbox_style="white-bg",
+#                           zoom=7.1, height = 600, center = {"lat": 42.789886, "lon": -8.003869},
+#                           opacity=1,
+#			   hover_name='Area',
+#			   hover_data={"Area":False,"Riesgo IA 7":False,"IA 7":True}
+#                          )
+#fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+
+#fig.write_html("./docs/risk_region_IA7.html")
 
 #Plot 2020 heatmap of new cases
 df_year = df[df['Fecha'].dt.year == 2020]
